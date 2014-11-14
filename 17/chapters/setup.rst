@@ -30,7 +30,7 @@ Creating your Django Project
 ----------------------------
 To create a new Django Project, go to your ``code`` directory (i.e. your ``<workspace>`` directory), and issue the following command:
 
-``$ python django-admin.py startproject tango_with_django_project``
+``$ django-admin.py startproject tango_with_django_project``
 
 .. note:: On Windows you may have to use the full path to the django-admin.py script. i.e. ``python c:\python27\scripts\django-admin.py startproject tango_with_django_project`` as suggested on `StackOverflow <http://stackoverflow.com/questions/8112630/cant-create-django-project-using-command-prompt>`_.
 
