@@ -267,7 +267,7 @@ Congratulations! You have got Rango up and running. This is a significant landma
 * Now map the this view to ``/rango/about/``. For this step, you'll only need to edit the ``urls.py`` of the rango application.
 * Revise the ``HttpResponse`` in the ``index`` view to include a link to the about page.
 * In the ``HttpResponse`` in the ``about`` view include a link back to the main page.
-* If you haven't done so already, it is a good point to go off an complete part one of the official `Django Tutorial <https://docs.djangoproject.com/en/1.5/intro/tutorial01/>`_. 
+* If you haven't done so already, it is a good point to go off an complete part one of the official `Django Tutorial <https://docs.djangoproject.com/en/1.7/intro/tutorial01/>`_. 
 
 Hints
 .....
