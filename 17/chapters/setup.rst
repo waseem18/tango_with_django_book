@@ -30,7 +30,7 @@ Creating your Django Project
 ----------------------------
 To create a new Django Project, go to your ``code`` directory (i.e. your ``<workspace>`` directory), and issue the following command:
 
-``$ python django-admin.py startproject tango_with_django_project``
+``$ django-admin.py startproject tango_with_django_project``
 
 .. note:: On Windows you may have to use the full path to the django-admin.py script. i.e. ``python c:\python27\scripts\django-admin.py startproject tango_with_django_project`` as suggested on `StackOverflow <http://stackoverflow.com/questions/8112630/cant-create-django-project-using-command-prompt>`_.
 
@@ -113,7 +113,7 @@ When setting ports, it is unlikely that you will be able to use TCP port 80 as t
 
 While you won't be using the lightweight development server to deploy your application, sometimes it is nice to be able to demo your application on a computer of a colleague. Running the server with your machine's IP address will enable others to enter in ``http://<your_machines_ip_address>:<port>/`` and view your web application. Of course, this will depend on how your network is configured. There may be proxy servers or firewalls in the way which would need to be configured before this would work. Check with the administrator of the network you are using if you can't view the development server remotely.
 
-.. note:: The ``django-admin.py`` and ``manage.py`` scripts provides a lot of useful, time-saving functionality for you. ``django-admin.py`` allows you to start new projects and apps, along with other commands. Within your project directory, ``manage.py`` allows you to perform administrative tasks within the scope of your project only. Simply execute the relevant script name without any arguments to see what you can do with each. The `official Django documentation provides a detailed list and explanation of each possible command <https://docs.djangoproject.com/en/1.5/ref/django-admin/>`_ you can supply for both scripts.
+.. note:: The ``django-admin.py`` and ``manage.py`` scripts provides a lot of useful, time-saving functionality for you. ``django-admin.py`` allows you to start new projects and apps, along with other commands. Within your project directory, ``manage.py`` allows you to perform administrative tasks within the scope of your project only. Simply execute the relevant script name without any arguments to see what you can do with each. The `official Django documentation provides a detailed list and explanation of each possible command <https://docs.djangoproject.com/en/1.7/ref/django-admin/>`_ you can supply for both scripts.
 
 If you are using version control, now may be a good time to commit the changes you have made to your workspace. Refer to the :ref:`crash course on GIT <git-crash-course>` if you can't remember the commands and steps involved in doing this.
 
@@ -198,7 +198,7 @@ To create our mappings, we use a `tuple <http://en.wikipedia.org/wiki/Tuple>`_. 
 
 .. note:: You might be thinking that matching a blank URL is pretty pointless - what use would it serve? When the URL pattern matching takes place, only a portion of the original URL string is considered. This is because our Django project will first process the original URL string (i.e. ``http://www.tangowithdjango.com/rango/``). Once this has been processed, it is removed, with the remained being passed for pattern matching. In this instance, there would be nothing left - so an empty string would match!
 
-.. note:: The ``name`` parameter is optional to the ``django.conf.urls.url()`` function. This is provided by Django to allow you to distinguish one mapping from another. It is entirely plausible that two separate URL mappings expressions could end calling the same view. ``name`` allows you to differentiate between them - something which is useful for *reverse URL matching.* Check out `the Official Django documentation on this topic <https://docs.djangoproject.com/en/1.5/topics/http/urls/#naming-url-patterns>`_ for more information.
+.. note:: The ``name`` parameter is optional to the ``django.conf.urls.url()`` function. This is provided by Django to allow you to distinguish one mapping from another. It is entirely plausible that two separate URL mappings expressions could end calling the same view. ``name`` allows you to differentiate between them - something which is useful for *reverse URL matching.* Check out `the Official Django documentation on this topic <https://docs.djangoproject.com/en/1.7/topics/http/urls/#naming-url-patterns>`_ for more information.
 
 You may have seen that within your project configuration directory a ``urls.py`` file already exists. Why make another? Technically, you can put *all* the URLs for your project's applications within this file. However, this is considered bad practice as it increases coupling on your individual applications. A separate ``urls.py`` file for each application allows you to set URLs for individual applications. With minimal coupling, you can then join them up to your project's master ``urls.py`` file later.
 
@@ -267,7 +267,7 @@ Congratulations! You have got Rango up and running. This is a significant landma
 * Now map the this view to ``/rango/about/``. For this step, you'll only need to edit the ``urls.py`` of the rango application.
 * Revise the ``HttpResponse`` in the ``index`` view to include a link to the about page.
 * In the ``HttpResponse`` in the ``about`` view include a link back to the main page.
-* If you haven't done so already, it is a good point to go off an complete part one of the official `Django Tutorial <https://docs.djangoproject.com/en/1.5/intro/tutorial01/>`_. 
+* If you haven't done so already, it is a good point to go off an complete part one of the official `Django Tutorial <https://docs.djangoproject.com/en/1.7/intro/tutorial01/>`_. 
 
 Hints
 .....
