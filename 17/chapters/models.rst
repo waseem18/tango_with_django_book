@@ -372,11 +372,11 @@ The workflow for adding models can be broken down into five steps.
 
 #. First, create your new model(s) in your Django application's ``models.py`` file.
 #. Update ``admin.py`` to include and register your new model(s).
-#. Then perform the migration ``$ python manage.py migratesql <app_name>``
+#. Then perform the migration ``$ python manage.py sqlmigrate <app_name>``
 #. Apply the changes ``$ python manage.py migrate``. This will create the necessary infrastructure within the database for your new model(s).
 #. Create/Edit your population script for your new model(s).
 
-Invariably there will be times when you will have to delete your database. In which case you will have to run the ``migrate`` command, then ``createsuperuser`` command, followed by the ``migratesql`` commands for each app, then you can populate the database.
+Invariably there will be times when you will have to delete your database. In which case you will have to run the ``migrate`` command, then ``createsuperuser`` command, followed by the ``sqlmigrate`` commands for each app, then you can populate the database.
 
 Exercises
 ---------
