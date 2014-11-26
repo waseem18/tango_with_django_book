@@ -24,7 +24,7 @@ After verifying your Python installation, check your Django installation by issu
 	$ python -c "import django; print(django.get_version())"
 	1.7
 
-The command again executes the code within the string provided as part of the ``-c`` switch. After importing Django, you should see ``1.5.4`` printed underneath. If you see a different set of numbers or are greeted with a Python ``ImportError``, go back to Section :ref:`installing-software` or consult the `Django Documentation on Installing Django <https://docs.djangoproject.com/en/1.7/topics/install/>`_ for more information. If you find that you have got a different version of Django, it is possible that you will come across problems at some point. It's definitely worth making sure you have Django 1.7 installed. 
+The command again executes the code within the string provided as part of the ``-c`` switch. After importing Django, you should see ``1.7`` printed underneath. If you see a different set of numbers or are greeted with a Python ``ImportError``, go back to Section :ref:`installing-software` or consult the `Django Documentation on Installing Django <https://docs.djangoproject.com/en/1.7/topics/install/>`_ for more information. If you find that you have got a different version of Django, it is possible that you will come across problems at some point. It's definitely worth making sure you have Django 1.7 installed. 
 
 Creating your Django Project
 ----------------------------
