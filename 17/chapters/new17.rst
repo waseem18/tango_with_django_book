@@ -5,7 +5,7 @@
 New in TwD 1.7
 ==============
 
-.. warning:: Please note that this version of the book is still in the draft phase. Though it should all pretty much work (howeve,r some links and screenshots need to be updated). Please report any bugs, problems, etc, or submit change requests via GitHub: https://github.com/leifos/tango_with_django_book/tree/master/17 
+.. warning:: Please note that this version of the book is still in the draft phase. Though it should all pretty much work (however some links and screenshots need to be updated). Please report any bugs, problems, etc, or submit change requests via GitHub: https://github.com/leifos/tango_with_django_book/tree/master/17 
 
 
 In this version of the online tutorial / book, we have updated and added a number of things:
