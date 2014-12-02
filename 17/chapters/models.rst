@@ -94,7 +94,7 @@ With our models defined, we can now let Django work its magic and create the tab
 
 ``$ python manage.py syncdb``
 
-However, Django 1.7 provides a migration tool to setup and update the database to reflect changes in the models. So the process has become a little more complicated - but the idea is tht if you make changes to the models, you will be able to update the database without having to delete it.
+However, Django 1.7 provides a migration tool to setup and update the database to reflect changes in the models. So the process has become a little more complicated - but the idea is that if you make changes to the models, you will be able to update the database without having to delete it.
 
 Setup Database and Create Superuser
 ....................................
