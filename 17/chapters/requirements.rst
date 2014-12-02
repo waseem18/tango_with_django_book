@@ -346,15 +346,23 @@ They are pretty easy to setup, once you have pip installed, and you know the rig
 The first package provides you with the infrastructure to create a virtual environment.  See `a non-magical introduction to Pip and Virtualenv for Python Beginners <http://dabapps.com/blog/introduction-to-pip-and-virtualenv-python/>`_ by Jamie Matthews for details about using virtualenv. However, using just *virtualenv* alone is rather complex. The second package provides a wrapper to the functionality in the virtualenv package and makes life a lot easier. 
 
 
-To use the wrapper you need to call the following shell script from your command line:
+If you are using a linux/unix based OS, then to use the wrapper you need to call the following shell script from your command line:
 ::
 
 	$ source virtualenvwrapper.sh
 
 It is a good idea to add this to your bash/profile script. So you dont have to run it each and every time you want to use virtualenvironments.
 
+However, if you are using windows, then install the `virtualenvwrapper-win <https://pypi.python.org/pypi/virtualenvwrapper-win>`_ package:
 
-To create a virtual environment:
+
+::
+
+	$ pip install virtualenvwrapper-win
+	
+
+	
+Now you should be all set to create a virtual environment:
 
 ::
 
