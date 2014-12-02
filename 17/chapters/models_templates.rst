@@ -113,8 +113,7 @@ Instead, we could just use the category name as part of the URL. ``/rango/catego
 
 .. note:: Designing clean URLs is an important aspect of web design. See `Wikipedia's article on Clean URLs <http://en.wikipedia.org/wiki/Clean_URL>`_ for more details.
 
-
-#TODO(leifos): To handle this problem we are going to make use of the slugify function provided by Django, based on the answers provided at: http://stackoverflow.com/questions/837828/how-do-i-create-a-slug-in-django
+To handle this problem we are going to make use of the slugify function provided by Django, based on the answers provided at: http://stackoverflow.com/questions/837828/how-do-i-create-a-slug-in-django
 
 
 Update Category Table with Slug Field
@@ -145,8 +144,7 @@ Then we need to override the ``save`` method of the ``Category`` model, which we
 
 Now that you have performed this update to the Model, you will need to perform the migration. 
 
-.. 
-
+.. code-block::
 
 	$ python manage.py makemigrations rango
 	$ python manage.py migrate
