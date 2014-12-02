@@ -19,18 +19,18 @@ Create a new file, called ``rango-ajax.js`` and add it to your ``js`` directory.
 
 .. code-block:: html
 	
-	<script src="{% static "/js/jquery.js" %}"></script>
-	<script src="{% static "/js/rango-ajax.js" %}"></script>
+	<script src="{% static "js/jquery.js" %}"></script>
+	<script src="{% static "js/rango-ajax.js" %}"></script>
 
 
-Here we assume you have downloaded a version of the jquerylibrary, but you can also just directly refer to it:
+Here we assume you have downloaded a version of the JQuery library, but you can also just directly refer to it:
 
 .. code-block:: html
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
-Now that the pre-reqs for using Jquery are in place we can use it to pimp the rango application.
+Now that the pre-reqs for using JQuery are in place we can use it to pimp the rango application.
 
 Add a "Like Button" 
 --------------------
@@ -49,24 +49,24 @@ To let users "like" certain categories undertake the following workflow:
 	- Note, since the ``category()`` view passes a reference to the category object, we can use that to access the number of likes, with ``{{ category.likes }}`` in the template
 
 * Create a view called, ``like_category`` which will examine the request and pick out the ``category_id`` and then increment the number of likes for that category.
-	- Don't forgot to add in the url mapping; i.e  map the ``like_category'' view to ``rango/like_category/``. The GET request will then be ``rango/like_category/?category_id=XXX``
-	- Instead of return a HTML page have this view will return the new total number of likes for that category.
+	- Don't forgot to add in the url mapping; i.e  map the ``like_category`` view to ``rango/like_category/``. The GET request will then be ``rango/like_category/?category_id=XXX``
+	- Instead of returning a HTML page have this view will return the new total number of likes for that category.
 * Now in "rango-ajax.js" add the JQuery code to perform the AJAX GET request.
-	- If the request is successful, then update the #like_count element, and hide the like button.
+	- If the request is successful, then update the ``#like_count`` element, and hide the like button.
 
 
 Updating Category Template
 ..........................
-To prepare the template we will need to add in the "Like" button with id="like" and create a ``<div> to display the number of likes ``{{% category.likes %}}``. To do this, add the following ``<div>`` to the *category.html* template:
+To prepare the template we will need to add in the "Like" button with ``id="like"`` and create a ``<div>`` to display the number of likes ``{{% category.likes %}}``. To do this, add the following ``<div>`` to the *category.html* template:
 
 .. code-block:: html
 	
 	<p>
 	
-	<b id="like_count">{{ category.likes }}</b> people like this category
+	<strong id="like_count">{{ category.likes }}</strong> people like this category
 	
 	{% if user.is_authenticated %}
-		<button id ="likes" data-catid="{{category.id}}" class="btn btn-primary" type="button">
+		<button id="likes" data-catid="{{category.id}}" class="btn btn-primary" type="button">
 		<span class="glyphicon glyphicon-thumbs-up"></span> 
 		Like
 		</button>
@@ -88,13 +88,13 @@ Create a view called, ``like_category`` in ``rango/views.py`` which will examine
 	   
 	    cat_id = None
 	    if request.method == 'GET':
-	        cat_id = request.GET['cat_id']
+	        cat_id = request.GET['category_id']
 
 	    likes = 0
 	    if cat_id:
 	        cat = Cat.objects.get(id=int(cat_id))
 	        if cat:
-				likes = cat.likes + 1
+		    likes = cat.likes + 1
 	            cat.likes =  likes 
 	            cat.save()
 		
@@ -115,16 +115,16 @@ Now in "rango-ajax.js" you will need to add some JQuery code to perform an AJAX 
 
 .. code-block:: javascript
 	
-		$('#likes').click(function(){
+	    $('#likes').click(function(){
 	        var catid;
 	        catid = $(this).attr("data-catid");
-	         $.get('/rango/like_category/', {category_id: catid}, function(data){
+	        $.get('/rango/like_category/', {category_id: catid}, function(data){
 	                   $('#like_count').html(data);
 	                   $('#likes').hide();
-	               });
+	        });
 	    });
 
-This piece of JQuery/Javascript will add an event handler to the element with id ``#likes``, i.e. the button. When clicked, it will extract the category id from the button element, and then make an AJAX GET request which will make a call to ``/rango/like_category/`` encoding the ``category id`` in the request. If the request is successful, then the HTML element with id like_count (i.e. the <strong> ) is updated with the data returned by the request, and the HTML element with id likes (i.e. the <button>) is hidden.
+This piece of JQuery/Javascript will add an event handler to the element with id ``#likes``, i.e. the button. When clicked, it will extract the category id from the button element, and then make an AJAX GET request which will make a call to ``/rango/like_category/`` encoding the ``category_id`` in the request. If the request is successful, then the HTML element with id like_count (i.e. the <strong> ) is updated with the data returned by the request, and the HTML element with id likes (i.e. the <button>) is hidden.
 
 There is a lot going on here and getting the mechanics right when constructing pages with AJAX can be a bit tricky. Essentially here, when the button is clicked an AJAX request is made, given our url mapping, this invokes the ``like_category`` view which updates the category and returns the new number of likes. When the AJAX request receives the response it updates parts of the page, i.e. the text and the button. The ``#likes`` button is hidden.
 
