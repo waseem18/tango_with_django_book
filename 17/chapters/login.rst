@@ -305,9 +305,9 @@ Now we can add a URL mapping to our new view. In ``rango/urls.py`` modify the ``
 	urlpatterns = patterns('',
 	    url(r'^$', views.index, name='index'),
 	    url(r'^about/$', views.about, name='about'),
-	    url(r'^category/(?P<category_name_url>\w+)$', views.category, name='category'),
+	    url(r'^category/(?P<category_name_slug>\w+)$', views.category, name='category'),
 	    url(r'^add_category/$', views.add_category, name='add_category'),
-	    url(r'^category/(?P<category_name_url>\w+)/add_page/$', views.add_page, name='add_page'),
+	    url(r'^category/(?P<category_name_slug>\w+)/add_page/$', views.add_page, name='add_page'),
 	    url(r'^register/$', views.register, name='register'), # ADD NEW PATTERN!
 	    )
 
@@ -448,9 +448,9 @@ With your login template created, we can now match up the ``user_login()`` view 
 	urlpatterns = patterns('',
 	    url(r'^$', views.index, name='index'),
 	    url(r'^about/$', views.about, name='about'),
-	    url(r'^category/(?P<category_name_url>\w+)$', views.category, name='category'),
+	    url(r'^category/(?P<category_name_slug>\w+)$', views.category, name='category'),
 	    url(r'^add_category/$', views.add_category, name='add_category'),
-	    url(r'^category/(?P<category_name_url>\w+)/add_page/$', views.add_page, name='add_page'),
+	    url(r'^category/(?P<category_name_slug>\w+)/add_page/$', views.add_page, name='add_page'),
 	    url(r'^register/$', views.register, name='register'),
 	    url(r'^login/$', views.user_login, name='login'),
 	    )
@@ -540,7 +540,7 @@ We'll also add in another pattern to Rango's ``urlpatterns`` tuple in the ``urls
 	    url(r'^add_category/$', views.add_category, name='add_category'),
 	    url(r'^register/$', views.register, name='register'),
 	    url(r'^login/$', views.user_login, name='login'),
-	    url(r'^(?P<category_name_url>\w+)', views.category, name='category'),
+	    url(r'^(?P<category_name_slug>\w+)', views.category, name='category'),
 	    url(r'^restricted/', views.restricted, name='restricted'),
 	    )
 
@@ -579,9 +579,9 @@ With the view created, map the URL ``/rango/logout/`` to the ``user_logout()`` v
 	urlpatterns = patterns('',
 	    url(r'^$', views.index, name='index'),
 	    url(r'^about/$', views.about, name='about'),
-	    url(r'^category/(?P<category_name_url>\w+)$', views.category, name='category'),
+	    url(r'^category/(?P<category_name_slug>\w+)$', views.category, name='category'),
 	    url(r'^add_category/$', views.add_category, name='add_category'),
-	    url(r'^category/(?P<category_name_url>\w+)/add_page/$', views.add_page, name='add_page'),
+	    url(r'^category/(?P<category_name_slug>\w+)/add_page/$', views.add_page, name='add_page'),
 	    url(r'^register/$', views.register, name='register'),
 	    url(r'^login/$', views.user_login, name='login'),
 	    url(r'^restricted/$', views.restricted, name='restricted'),
