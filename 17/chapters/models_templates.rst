@@ -207,7 +207,7 @@ Next, we can add our new view, ``category()``.
 	        # If we can't, the .get() method raises a DoesNotExist exception.
 	        # So the .get() method returns one model instance or raises an exception.
 	        category = Category.objects.get(slug=category_name_slug)
-			context_dict['category_name'] = category.name
+	        context_dict['category_name'] = category.name
 	        
 	        # Retrieve all of the associated pages.
 	        # Note that filter returns >= 1 model instance.
