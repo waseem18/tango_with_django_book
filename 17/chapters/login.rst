@@ -21,8 +21,9 @@ Within the ``settings.py`` file find the ``INSTALLED_APPS`` tuple and check that
 .. code-block:: python
 	
 	INSTALLED_APPS = (
-		'django.contrib.admin',
-	    'django.contrib.auth', 
+	    'django.contrib.admin',
+	    'django.contrib.auth',
+	    'django.contrib.contenttypes',
 	    'django.contrib.sessions',
 	    'django.contrib.messages',
 	    'django.contrib.staticfiles',
