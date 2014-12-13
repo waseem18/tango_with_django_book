@@ -94,7 +94,6 @@ The New Base Template
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-	    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	  </body>
@@ -396,7 +395,7 @@ Again we have manually transformed the form created by the ``{{ form.as_p }}`` t
 
 Using Django-Bootstrap-Toolkit
 ------------------------------
-A simpel alternative would be to use ``django-bootstrap-toolkit`` see https://github.com/dyve/django-bootstrap-toolkit. Note that there are other packages like this. To install the ``django-bootstrap-toolkit`` run, ``pip install django-bootstrap-toolkit``. Add, ``bootstrap_toolkit`` to the ``INSTALLED_APPS`` tuple in ``settings.py``. Then modify the template like that shown below:
+A simple alternative would be to use ``django-bootstrap-toolkit`` see https://github.com/dyve/django-bootstrap-toolkit. Note that there are other packages like this. To install the ``django-bootstrap-toolkit`` run, ``pip install django-bootstrap-toolkit``. Add, ``bootstrap_toolkit`` to the ``INSTALLED_APPS`` tuple in ``settings.py``. Then modify the template like that shown below:
 
 .. code-block::html
 
@@ -433,7 +432,7 @@ In which case the ``category.html`` template would become:
 		        </form>
 		{% endblock %}
 	
-This solutin is much cleaner, and automated. However, it does not render as nicely :-(. Probably requires some tweaking to improve how it renders.
+This solution is much cleaner, and automated. However, it does not render as nicely :-(. Probably requires some tweaking to improve how it renders.
 	
 
 
