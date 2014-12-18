@@ -392,7 +392,7 @@ Hints
 .....
 If you require some help or inspiration to get these exercises done, these hints will hopefully help you out.
 
-* Modify the ``Category`` model by adding in the fields, ``view`` and ``likes`` as ``IntegerField``s.
+* Modify the ``Category`` model by adding in the fields, ``view`` and ``likes`` as ``IntegerFields``.
 * Modify the ``add_cat`` function in the ``populate.py`` script, to take the ``views`` and ``likes``. Once you get the Category c, then you can update the number of views with ``c.views``, and similarly with likes.
 * To customise the admin interface, you will need to edit ``rango/admin.py`` and create a ``PageAdmin`` class that inherits from ``admin.ModelAdmin``. 
 * Within your new ``PageAdmin`` class, add ``list_display = ('title', 'category', 'url')``.

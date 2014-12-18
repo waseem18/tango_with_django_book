@@ -139,7 +139,7 @@ Exercises
 Taking the basic Bing Search API function we added above as a baseline, try out the following exercises.
 * If using a public repository, refactor the code so that your API key is not publicly accessible
 * Add a main() function to the *bing_search.py* to test out the BING Search API 
-	* Hint: add the following code, so that when you ``python bing_search.py`` it calls the ``main()`` function:
+* Hint: add the following code, so that when you ``python bing_search.py`` it calls the ``main()`` function:
 	
 .. code-block:: python
 

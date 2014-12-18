@@ -144,7 +144,7 @@ Then we need to override the ``save`` method of the ``Category`` model, which we
 
 Now that you have performed this update to the Model, you will need to perform the migration. 
 
-.. code-block::
+.. code-block:: python
 
 	$ python manage.py makemigrations rango
 	$ python manage.py migrate

@@ -62,7 +62,7 @@ These settings should be self explanatory. Now, in ``tango_with_django_project/u
     	url(r'^admin/', include(admin.site.urls)),
     	url(r'^rango/', include('rango.urls')),
     	(r'^accounts/', include('registration.backends.simple.urls')),
-)
+	)
 
 
 The ``django-registration-redux`` package provides a number of different registration backends, depending on your needs. For example you may want a two-step process, where user are sent a confirmation email, and a verification link. Here we will be using the simple one-step registration process, where a user sets up their account by entering in a username, email, and password, and is automatically logged in.
