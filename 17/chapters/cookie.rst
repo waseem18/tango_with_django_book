@@ -109,16 +109,16 @@ The sensible place to assume a user enters the Rango site is at the index page. 
 	   
 	    category_list = Category.objects.all()
 	    page_list = Page.objects.order_by('-views')[:5]
-    	context_dict = {'categories': category_list, 'pages': page_list}
+    	    context_dict = {'categories': category_list, 'pages': page_list}
 
 	    # Get the number of visits to the site.
 	    # We use the COOKIES.get() function to obtain the visits cookie.
 	    # If the cookie exists, the value returned is casted to an integer.
 	    # If the cookie doesn't exist, we default to zero and cast that.
-	    visits = int(request.COOKIES.get('visits', '0'))
-		
-		reset_last_visit_time = False
-	
+	    visits = int(request.COOKIES.get('visits', '1'))
+	    
+	    reset_last_visit_time = False
+	    response = render(request, 'rango/index.html', context_dict)
 	    # Does the cookie last_visit exist?
 	    if 'last_visit' in request.COOKIES:
 	        # Yes it does! Get the cookie's value.
@@ -130,18 +130,18 @@ The sensible place to assume a user enters the Rango site is at the index page. 
 	        if (datetime.now() - last_visit_time).days > 0:
 	            visits = visits + 1
 	            # ...and flag that the cookie last visit needs to be updated
-				reset_last_visit_time = True
+		    reset_last_visit_time = True
 	    else:
 	        # Cookie last_visit doesn't exist, so flag that it should be set.
 	        reset_last_visit_time = True
 	
-	
 		context_dict['visits'] = visits
 		
-	    # Obtain our Response object early so we can add cookie information.
+	        #Obtain our Response object early so we can add cookie information.
 		response = render(request, 'rango/index.html', context_dict)
-		if reset_last_visit_time:
-			response.set_cookie('last_visit', datetime.now())
+
+	    if reset_last_visit_time:
+		response.set_cookie('last_visit', datetime.now())
 		response.set_cookie('visits', visits)
 	
 	    # Return response back to the user, updating any cookies that need changed.
@@ -203,14 +203,15 @@ Now instead of storing the cookies directly in the request (and thus on the clie
 
 	    context_dict = {'categories': category_list, 'pages': page_list}
 
-	    visits = request.session.get('visits)
-		if not visits:
-			visits = 0
+	    visits = request.session.get('visits')
+	    if not visits:
+		visits = 1
 	    reset_last_visit_time = False
 
 	    last_visit = request.session.get('last_visit')
 	    if last_visit:
-		    last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+	        last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+	        
 	        if (datetime.now() - last_visit_time).seconds > 0:
 	            # ...reassign the value of the cookie to +1 of what it was before...
 	            visits = visits + 1
@@ -220,12 +221,12 @@ Now instead of storing the cookies directly in the request (and thus on the clie
 	        # Cookie last_visit doesn't exist, so create it to the current date/time.
 	        reset_last_visit_time = True
 
-	    context_dict['visits'] = visits
+	    if reset_last_visit_time:
+		request.session['last_visit'] = str(datetime.now())
 		request.session['visits'] = visits
-		if reset_last_visit_time:
-			request.session['last_visit'] = str(datetime.now())
+	    context_dict['visits'] = visits
 		
-		
+
 	    response = render(request,'rango/index.html', context_dict)
 
 	    return response
