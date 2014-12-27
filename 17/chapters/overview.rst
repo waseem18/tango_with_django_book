@@ -29,7 +29,7 @@ In this book, we will be taking an exampled-based approach (or inquiry-based lea
 * Use the User Authentication services provided by Django.
 * Incorporate external services into the application.
 * Include *Cascading Styling Sheets (CSS)* and *JavaScript* within a web application.
-* Design and apply CSS to improve the look and feel the web application.
+* Design and apply CSS to improve the look and feel of the web application.
 * Work with cookies and sessions with Django.
 * Include more advanced functionality like *AJAX* into your application.
 * Deploy your application to a web server using *PythonAnywhere.*
