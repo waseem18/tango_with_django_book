@@ -92,7 +92,7 @@ Create a view called, ``like_category`` in ``rango/views.py`` which will examine
 
 	    likes = 0
 	    if cat_id:
-	        cat = Cat.objects.get(id=int(cat_id))
+	        cat = Category.objects.get(id=int(cat_id))
 	        if cat:
 		    likes = cat.likes + 1
 	            cat.likes =  likes 
