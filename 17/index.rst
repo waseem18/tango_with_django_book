@@ -39,7 +39,9 @@ How To Tango With Django 1.7
    
 
    
-..   chapters/acknowledgements
+   chapters/acknowledgements
+   chapters/javascript
+   chapters/virtual
 
 
 Indices and tables

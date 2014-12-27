@@ -368,14 +368,14 @@ Now you should be all set to create a virtual environment:
 
 	$ mkvirtualenv rango
 
-You can list the virtual environments created with ``lsvirtualenv'', and you can activate a virtual environment as follows:
+You can list the virtual environments created with ``lsvirtualenv``, and you can activate a virtual environment as follows:
 
 ::
 
 	$ workon rango
 	(rango)$
 	
-Your prompt with change and the current virtual environment will be displayed, i.e. rango. Now within this environment you will be able to install all the packages you like, without interferring with your standard or other environements. Try ``pip list'' to see you dont have Django or Pillow installed in your virtual environment. You can now install them with pip so that they exist in your virtual environment.
+Your prompt with change and the current virtual environment will be displayed, i.e. rango. Now within this environment you will be able to install all the packages you like, without interferring with your standard or other environements. Try ``pip list`` to see you dont have Django or Pillow installed in your virtual environment. You can now install them with pip so that they exist in your virtual environment.
 
 Later on when we go to deploy the application, we will go through a similar process see Chapter :ref:`Deploying your Application<virtual-environment>` and set up a virtual environment on PythonAnywhere.
 
