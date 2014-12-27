@@ -245,7 +245,7 @@ Try clicking the ``Categorys`` link within the ``Rango`` section. From here, you
 
 Creating a Population Script
 ----------------------------
-It's highly likely that during the course of development, you'll come to a point where you will need to modify a Django model. When you do this, the easiest option - without external software - is to re-create your entire database and run ``python manage.py syncdb`` ...again! Since this slow and repetitive task can be such a pain, it's good practice to create what we call a *population script* for your database. This script is designed to automatically populate your database with test data for you, which can potentially save you lots of time.
+Entering test data into your database tends to be a hassle. Many developers will add in some bogus test data by randomly hitting keys like they are a monkey trying to write Shakespeare. If you are in a small development team, then everyone has to enter in some data. Rather than do this independently, it is better to write a script so that everyone has similar data, and so that everyone has useful and appropriate data, rather than junk test data. So it is good practice to create what we call a *population script* for your database. This script is designed to automatically populate your database with test data for you.
 
 To create a population script for Rango's database, we start by creating a new Python module within our Django project's root directory (e.g. ``<workspace>/tango_with_django_project/``). Create the ``populate_rango.py`` file and add the following code.
 
