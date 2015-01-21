@@ -159,7 +159,7 @@ Now, to apply these migrations (which will essentially create the database table
 	  
 	  
 
-.. warning:: Whenever you add to existing models, *you will have to repeat this processrunning* ``python manage.py makemigrations <app_name>``, and then ``python manage.py migrate``
+.. warning:: Whenever you add to existing models, *you will have to repeat this process running* ``python manage.py makemigrations <app_name>``, and then ``python manage.py migrate``
 	
 You may have also noticed that our ``Category`` model is currently lacking some fields that we defined in Rango's requirements. We will add these in later to remind you of the updating process.
 
