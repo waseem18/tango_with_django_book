@@ -51,7 +51,7 @@ In ``rango/models.py``, we will define two classes - both of which must inherit 
 	class Category(models.Model):
 	    name = models.CharField(max_length=128, unique=True)
 
-	    def __unicode__(self):
+	    def __unicode__(self):  #For Python 2, use __str__ on Python 3
 	        return self.name
 	
 	class Page(models.Model):
@@ -60,7 +60,7 @@ In ``rango/models.py``, we will define two classes - both of which must inherit 
 	    url = models.URLField()
 	    views = models.IntegerField(default=0)
 	    
-	    def __unicode__(self):
+	    def __unicode__(self):	#For Python 2, use __str__ on Python 3
 	        return self.title
 
 When you define a model, you need to specify the list of attributes and their associated types along with any optional parameters. Django provides a number of built-in fields. Some of the most commonly used are listed below.
