@@ -227,7 +227,7 @@ At the moment, when users register, it takes them to the registration complete p
 	
 	# Create a new class that redirects the user to the index page, if successful at logging
 	class MyRegistrationView(RegistrationView):
-	    def get_success_url(selfself,request, user):
+	    def get_success_url(self,request, user):
 	        return '/rango/'
 
 
