@@ -248,7 +248,7 @@ At the moment, when users register, it takes them to the registration complete p
 
 Exercises
 ---------
-* Provide users with password reset functionality
+* Provide users with password change functionality
 
 
 	
