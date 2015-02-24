@@ -14,25 +14,25 @@
 	
 	* Взаємодію з базою даних оновлено з ``syncdb`` на ``migratesql`` та ``migrate``
 	* Відпрацювання відповідей оновлено з ``render_to_response`` до ``render``. Так що, тепер нема потреби робити запит контексту в кожному виді(view).
-	* The ``url`` template tag is now being used in templates, which provides a relative reference to urls rather than an absolute reference..
-	* Loading static files in the templates is now done with {% load staticfiles %}
-	* Using ``slugify`` to create well formed URL strings
+	* Тег ``url`` тепер використовується в шаблонах, що дає можливість використовувати відносні URL посилання а не абсолютні.
+	* Завантаження статичних файлів в шаблони тепер виконується за допомогою {% load staticfiles %}
+	* Використовуйте ``slugify`` щоб створювати вивірені рядки URL
 
 * Додано новий розділ про автентифікацію
 
-	* Where the login and registration is done with Django-Registration-Redux (see Chapter :ref:`login-redux-label`)
+	* Де логін і регістрація зроблено за допомогою Django-Registration-Redux (див. розділ :ref:`login-redux-label`)
 
-* The Bootstrap chapter has been updated to use Bootstrap 3.2.0 (see Chapter :ref:`bootstrap-chapter`)
+* Розділ Bootstrap оновлено до Bootstrap 3.2.0 (див. розділ :ref:`bootstrap-chapter`)
 
-	* Also, includes some notes on how to use Django-Bootstrap-Toolkit
+	* Також, додано деякі міркування як використовувати Django-Bootstrap-Toolkit
 	
-* A new chapter has been added on using template tags (see Chapter :ref:`template-tag-chapter` )
+* Додано новий розділ про використання шаблонних тегів (див. розділ :ref:`template-tag-chapter` )
 
-* Add a chapter on using JQuery with Django (see Chapter :ref:`jquery`)
+* Додано розділ JQuery та Django (див. розділ :ref:`jquery`)
 
-* The chapter on testing has been expanded - but is still a work in progress (see Chapter :ref:`test-chapter`)
+* Розширено розділ з тестування, але він ще доопрацьовується (див. розділ :ref:`test-chapter`)
 
-	* Includes how to use the package ``coverage`` to measure test coverage (see http://nedbatchelder.com/code/coverage/ )
+	* Додано опис пакунку ``coverage`` для оцінки покриття тестами (див. http://nedbatchelder.com/code/coverage/ )
 	
 	
 
