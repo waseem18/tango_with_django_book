@@ -18,12 +18,12 @@ To get templates up and running, you will need to setup a directory in which tem
 
 In your Django project's directory (e.g. ``<workspace>/tango_with_django_project/``), create a new directory called ``templates``. Within the new templates directory, create another directory called ``rango``. So the directory ``<workspace>/tango_with_django_project/templates/rango/`` will be the location in which we will be storing templates associated with our ``rango`` application. 
 
-To tell your Django project where the templates will be housed, open your project's ``settings.py`` file. Find the tuple ``TEMPLATE_DIRS`` and add in the path to your newly created ``templates`` directory, so it looks like the following example.
+To tell your Django project where the templates will be housed, open your project's ``settings.py`` file. Add the tuple ``TEMPLATE_DIRS`` to ``settings.py`` and add in the path to your newly created ``templates`` directory, so it looks like the following example.
 
 .. code-block:: python
 	
 	
-	TEMPLATE_DIRS = ['<workspace>/tango_with_django_project/']
+	TEMPLATE_DIRS = ('<workspace>/tango_with_django_project/',)
 
 Note that you are *required to use absolute paths* to locate the ``templates`` directory. If you are part of a team or working on different computers, this may become a problem in the future. You'll have different usernames, meaning different paths to your ``<workspace>`` directory. The *hard-coded* path you entered above would not be the same on different computers. Of course, you could add in the template directory for each different setup, but that would be a pretty nasty way to tackle the problem. So, what can we do?
 
@@ -55,12 +55,12 @@ Here we make use of the ``os.path.join()`` to mash together the ``BASE_DIR`` var
 
 .. code-block:: python
 	
-	TEMPLATE_DIRS = [
+	TEMPLATE_DIRS = (
 	    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
 	    # Always use forward slashes, even on Windows.
 	    # Don't forget to use absolute paths, not relative paths.
 	    TEMPLATE_PATH,
-	]
+	)
 
 We can keep the ``TEMPLATE_PATH`` variable at the top of our ``settings.py`` module to make it easy to access should it ever need to be changed. This is why we created an additional variable to store the template path.
 
