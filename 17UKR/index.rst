@@ -13,35 +13,35 @@ How To Tango With Django 1.7
 
    chapters/new17
    chapters/overview
-   chapters/requirements
-   chapters/setup
-   chapters/templates_static
-   chapters/models
-   chapters/models_templates
-   chapters/forms
-   chapters/login
-   chapters/templates
-   chapters/cookie
-   chapters/login_redux
-   chapters/bootstrap
-   chapters/template_tags
-   chapters/bing_search
-   chapters/tango
-   chapters/tango_too
-   chapters/jquery	
-   chapters/ajax
-   chapters/test
-   chapters/deploy
-   chapters/summary
+..   chapters/requirements
+..   chapters/setup
+..   chapters/templates_static
+..   chapters/models
+..   chapters/models_templates
+..   chapters/forms
+..   chapters/login
+..   chapters/templates
+..   chapters/cookie
+..   chapters/login_redux
+..   chapters/bootstrap
+..   chapters/template_tags
+..   chapters/bing_search
+..   chapters/tango
+..   chapters/tango_too
+..   chapters/jquery	
+..   chapters/ajax
+..   chapters/test
+..   chapters/deploy
+..   chapters/summary
    
-   chapters/git
-   chapters/css_intro
+..   chapters/git
+..   chapters/css_intro
    
 
    
    chapters/acknowledgements
-   chapters/javascript
-   chapters/virtual
+..   chapters/javascript
+..   chapters/virtual
 
 
 Indices and tables
