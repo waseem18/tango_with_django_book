@@ -13,7 +13,8 @@ How To Tango With Django 1.7
 
    chapters/new17
    chapters/overview
-..   chapters/requirements
+   chapters/requirements
+   chapters/acknowledgements
 ..   chapters/setup
 ..   chapters/templates_static
 ..   chapters/models
@@ -39,7 +40,7 @@ How To Tango With Django 1.7
    
 
    
-   chapters/acknowledgements
+.. trans   chapters/acknowledgements
 ..   chapters/javascript
 ..   chapters/virtual
 
