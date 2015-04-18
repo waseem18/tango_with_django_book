@@ -15,7 +15,7 @@ How To Tango With Django 1.7
    chapters/overview
    chapters/requirements
    chapters/acknowledgements
-..   chapters/setup
+   chapters/setup
 ..   chapters/templates_static
 ..   chapters/models
 ..   chapters/models_templates
