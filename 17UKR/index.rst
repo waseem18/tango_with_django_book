@@ -16,15 +16,15 @@ How To Tango With Django 1.7
    chapters/requirements
    chapters/acknowledgements
    chapters/setup
-..   chapters/templates_static
-..   chapters/models
-..   chapters/models_templates
-..   chapters/forms
-..   chapters/login
-..   chapters/templates
-..   chapters/cookie
-..   chapters/login_redux
-..   chapters/bootstrap
+   chapters/templates_static
+   chapters/models
+   chapters/models_templates
+   chapters/forms
+   chapters/login
+   chapters/templates
+   chapters/cookie
+   chapters/login_redux
+   chapters/bootstrap
 ..   chapters/template_tags
 ..   chapters/bing_search
 ..   chapters/tango
