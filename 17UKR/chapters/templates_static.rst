@@ -8,9 +8,9 @@
 
 Використання шаблонів
 ---------------------
-До цього часу ви підключали лише кілька речей для створення веб-сторінок на Django. Пара видів, для котрі, в свою чергу, з'єднані з парою URL відображень. Тепер ми заглибимось і з'ясуємо як створювати суміші із шаблонів.
+До цього часу ви поєднували лише кілька речей для створення веб-сторінок на Django. Пара видів, котрі, в свою чергу, з'єднані з парою URL відображень. Тепер ми заглибимось і з'ясуємо як створювати суміші із шаблонів.
 
-Добре спроектовані веб-сайти має у своїй структурі або макетах багато повторів. Якщо ви бачите загальний заголовок або нижній колонтитул на сторінках веб-сайту  то `повтори макетів сторінок <http://www.techrepublic.com/blog/web-designer/effective-design-principles-for-web-designers-repetition/>`_ допомагають користувачам з навігацією, підтримують організацію веб-сайту та зміцнюють почуття безперервності. Django надає `шаблони  <https://docs.djangoproject.com/en/1.7/ref/templates/>`_ щоб зробити легшим для розробників досягнення цілей розробки,  а також відділити логіку додатку від  задач презентації. В цій главі ви створите базовий шаблон, що буде використовивутися при створенні HTML сторінок. Цей шаблон потім буде відправлено через вид Django. У розділі :ref:`model-using-label` ми використаємо цей крок у поєднанні з моделями для надсилання динамічно сгенерованих даних.
+Добре спроектовані веб-сайти мають у своїй структурі або макетах багато повторів. Якщо ви бачите загальний заголовок або нижній колонтитул на сторінках веб-сайту  то `повтори макетів сторінок <http://www.techrepublic.com/blog/web-designer/effective-design-principles-for-web-designers-repetition/>`_ допомагають користувачам з навігацією, підтримують організацію веб-сайту та зміцнюють почуття безперервності. Django надає `шаблони  <https://docs.djangoproject.com/en/1.7/ref/templates/>`_ щоб зробити легшим для розробників досягнення цілей розробки,  а також відділити логіку додатку від  задач презентації. В цій главі ви створите базовий шаблон, що буде використовивутися при створенні HTML сторінок. Цей шаблон потім буде відправлено через вид Django. У розділі :ref:`model-using-label` ми використаємо цей крок у поєднанні з моделями для надсилання динамічно сгенерованих даних.
 
 Конфігурування каталогу шаблонів
 ................................
@@ -265,18 +265,18 @@
 #TODO(leifos): Можливо ми опишемо все це в розділі про розгортання... ймовірно це більш доцільно
 
 
-The Static Media Server
+Сервер статичного медіа
 -----------------------
-Now that you can dispatch static files, let's look at uploading media. Many websites provide their users with the ability to do this - for example, to upload a profile image. This section shows you how to add a simple development media server to your Django project. The development media server can be used in conjunction with file uploading forms which we will touch upon in Chapter :ref:`login-label`.
+Тепер, коли ми вміємо відправляти статичні файли, давайте подивимось як завантажувати медіа. Багато вебсайтів дають користувачам можливість робити це - наприклад, щоб завантажити зображення профілю. У цьому розділі показано як додати простий медіа сервер розробки до вашого проекту Django. Медіа сервер розробки може використовуватися у поєднанні з формами завантаження, яких ми торкнемося у розділі :ref:`login-label`.
 
-So, how do we go about setting up a development media server? The first step is to create another new directory called ``media`` within our Django project's root (e.g. ``<workspace>/tango_with_django_project/``). The new ``media`` directory should now be sitting alongside your ``templates`` and ``static`` directories. After you create the directory, you must then modify your Django project's ``urls.py`` file, located in the project configuration directory (e.g. ``<workspace>/tango_with_django_project/tango_with_django_project/``). Add the following code to the ``urls.py`` file.
+Отож, як ми будемо налаштовувати медіа сервер розробки? Перший крок це - створити нову теку на ім'я ``media`` в корені проекту Django (наприклад ``<workspace>/tango_with_django_project/``). Нова тека ``media`` повинна бути поруч з теками ``templates`` та ``static``. Після створення теки потрібно змінити  файл ``urls.py`` проекту Django, що знаходиться у теці конфігурації проекту (наприклад ``<workspace>/tango_with_django_project/tango_with_django_project/``). Додайте такий код до файлу ``urls.py``:
 
 .. code-block:: python
 	
-	# At the top of your urls.py file, add the following line:
+	# На початку файлу urls.py, додайте рядок:
 	from django.conf import settings
 	
-	# UNDERNEATH your urlpatterns definition, add the following two lines:
+	# ПІСЛЯ визначення патернів  url (urlpattern), додайте:
 	if settings.DEBUG:
 	    urlpatterns += patterns(
 	        'django.views.static',
@@ -284,50 +284,47 @@ So, how do we go about setting up a development media server? The first step is 
 	        'serve',
 	        {'document_root': settings.MEDIA_ROOT}), )
 
-The ``settings`` module from ``django.conf`` allows us access to the variables defined within our project's ``settings.py`` file. The conditional statement then checks if the Django project is being run in `DEBUG <https://docs.djangoproject.com/en/1.7/ref/settings/#debug>`_ mode. If the project's ``DEBUG`` setting is set to ``True``, then an additional URL matching pattern is appended to the ``urlpatterns`` tuple. The pattern states that for any file requested with a URL starting with ``media/``, the request will be passed to the ``django.views.static`` view. This view handles the dispatching of uploaded media files for you.
+Модуль ``settings`` з ``django.conf`` надає доступ до змінних що визначені у файлі проекту ``settings.py``. Твердження умови перевіряє чи запущено проект Django у спосіб `ЗНЕВАДЖЕННЯ <https://docs.djangoproject.com/en/1.7/ref/settings/#debug>`_ . Якщо ``DEBUG`` проекту встановлено в ``True``, тоді до кортежу ``urlpatterns`` додаються додаткові URL патерни. Шаблони налаштовані так, що кожен запит що починається з ``media/`` буде передано до виду ``django.views.static``. Цей вид підтримує обробку завантажених медіа-файлів.
 
-With your ``urls.py`` file updated, we now need to modify our project's ``settings.py`` file. We now need to set the values of two variables. In your file, add ``MEDIA_URL`` and ``MEDIA_ROOT``, setting them to the values as shown below.
-
-
-
+Після файлу``urls.py`` також потрібно внести зміни до файлу налаштувань проекту ``settings.py``. Потрібно встановити значення двох змінних. Додайте ``MEDIA_URL`` і ``MEDIA_ROOT`` та встановіть їх значення як показано далі.
 
 .. code-block:: python
 	
 	MEDIA_URL = '/media/'
 	MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
 
-The first variable ``MEDIA_URL`` defines the base URL from which all media files will be accessible on your development server. Setting the ``MEDIA_URL`` for example to ``/media/`` will mean that user uploaded files will be available from the URL ``http://127.0.0.1:8000/media/``. ``MEDIA_ROOT`` is used to tell Django where uploaded files should be stored on your local disk. In the example above, we set this variable to the result of joining our ``PROJECT_PATH`` variable defined in Section :ref:`model-setup-templates-label` with ``/media/``. This gives an absolute path of ``<workspace>/tango_with_django_project/media/``.
+Перша змінна ``MEDIA_URL`` встановлює базовий URL від котрого всі медіа-файли будоть досяжнні на вашому сервері розробки. Встановивши значення ``MEDIA_URL``, наприклад, у ``/media/`` призведе до того, що файли користувача будуть доступні за URL адресою ``http://127.0.0.1:8000/media/``. ``MEDIA_ROOT`` використовується щоб повідомити Django де на вашому локальному диску повинні зберігатися завантажені файли. В наведеному прикладі ми встановлюєму цю змінну рівеою результату об'єднання змінної ``PROJECT_PATH``, котру ми визначили у розділі :ref:`model-setup-templates-label`, та  ``/media/``. Це дає нам абсолютний шлях ``<workspace>/tango_with_django_project/media/``.
 
-.. caution:: As previously mentioned, the development media server supplied with Django is very useful for debugging purposes. However, it should **not** be used in a production environment. The official `Django documentation on static files <https://docs.djangoproject.com/en/1.7/ref/contrib/staticfiles/#static-file-development-view>`_ warns that such an approach is *"grossly inefficient and insecure"*. If you do come to deploying your Django project, read the documentation to see an alternative solution for file uploading that can handle a high volume of requests in a much more secure manner.
+.. caution:: Як згадувалося,  медіа сервер розробки, що постачається з Django,  дуже корисний для зневадження. Однак, він **ніколи** не повинен використовуватися в робочому оточенні. Офіційна `документація Django про статичні файли <https://docs.djangoproject.com/en/1.7/ref/contrib/staticfiles/#static-file-development-view>`_ попереджує що такий підхід *"вкрай неефективний та небезпечний"*. Якщо ви збираєтесь розгортати ваш проект Django перечитайте документацію та оберіть більш безпечний засіб.
 
-You can test this setup works by placing an image file in your newly created ``media`` directory. Drop the file in, start the Django development server, and request the image in your browser. For example, if you added the file ``rango.jpg`` to ``media``, the URL you should enter would look like ``http://127.0.0.1:8000/media/rango.jpg``. The image should show in your browser. If it doesn't, you'll need to go back and check your setup.
+Для перевірки налаштувань покладіть файл зображення до новостворенної теки ``media``. Запустіть сервер розробки Django та виканайте запит зображення в браузері. Наприклад, якщо ви додали файл ``rango.jpg`` до ``media``, URL буде виглядати так: ``http://127.0.0.1:8000/media/rango.jpg``. В браузері повинен відобразитися малюнок. Якщо ні, поверніться та перевірте налаштування.
 
 #TODO(leifos): check that this still works (certainly you can access the images.. need to check the uploading)
 
-Basic Workflow
---------------
-With the chapter complete, you should now know how to setup and create templates, use templates within your views, setup and use Django to send static media files, include images within your templates *and* setup Django's static media server to allow for file uploads. We've actually covered quite a lot!
+Підсумок
+--------
+Тепер ви повинні вміти налаштовувати та створювати шаблони, використовувати їх у видах, налаштовувати та використовувати Django для відсилання статичних медіа файлів, додавати зображення до шаблонів *та* налаштовувати сервер статичного медіа Django для завантаження файлів. Ми справді охопили досить багато!
 
-Creating a template and integrating it within a Django view is a key concept for you to understand. It takes several steps, but becomes second nature to you after a few attempts.
+Створення шаблонів та поєднання їх з видами Django це ключове поняття. Це займає кілька кроків, але, після кількох спроб, стає звичним.
 
-#. First, create the template you wish to use and save it within the ``templates`` directory you specified in your project's ``settings.py`` file. You may wish to use Django template variables (e.g. ``{{ variable_name }}``) within your template. You'll be able to replace these with whatever you like within the corresponding view.
-#. Find or create a new view within an application's ``views.py`` file.
-#. Add your view-specific logic (if you have any) to the view. For example, this may involve extracting data from a database.
-#. Within the view, construct a dictionary object which you can pass to the template engine as part of the template's *context*.
-#. Make use of the  ``render()`` helper function to generate the rendered response. Ensure you reference the request, then the template file, followed by the context dictionary!
-#. If you haven't already done so, map the view to a URL by modifying your project's ``urls.py`` file - and the application-specific ``urls.py`` file if you have one.
+#. Спочатку створіть шаблон та збережіть його в теці ``templates``, котру ви визначили в файлі ``settings.py`` проекту. Ви можете використовувати змінні шаблонів Django (наприклад ``{{ variable_name }}``). У відповідному виді ви зможете замінити їх на потрібне значення.
+#. Знайдіть або створіть новий вид в файлі додатку ``views.py``.
+#. Додайте потрібну логіку (якщо потрібно) до виду. Наприклад, це може бути отримання інформації з бази даних.
+#. У виді створіть об'єкт словника котрий можна передати до рушія шаблонів як частину *контексту* поточного шаблона.
+#. Використовуйте допоміжну функцію ``render()`` для генерації сформованого відгуку. Перевірте параметри функції, спочатку запит, потім шаблон і словник контексту!
+#. Якщо ви досі цього не зробили, створіть відображення виду на URL, відредагувавши файл проекту ``urls.py`` - і також, якщо потрібно, файл ``urls.py`` вашого додатку.
 
-The steps involved for getting a static media file onto one of your pages is another important process you should be familiar with. Check out the steps below on how to do this.
+Кроки необхідні для показу файлів статичного медіа на ваших сторінках - це ще один важливий процес який потрібно добре знати. Етапи необхідні для цього - переглянте нижче.
 
-#. Take the static media file you wish to use and place it within your project's ``static`` directory. This is the directory you specify in your project's ``STATICFILES_DIRS`` tuple within ``settings.py``.
-#. Add a reference to the static media file to a template. For example, an image would be inserted into an HTML page through the use of the ``<img />`` tag. 
-#. Remember to use the ``{% load staticfiles %}`` and ``{% static "filename" %}`` commands within the template to access the static files.
+#. Візміть потрібний файл та розмістіть його в теці ``static`` вашого проекту. Цей каталог ви визначили в кортежі ``STATICFILES_DIRS`` файлу ``settings.py``.
+#. У шаблоні додайте посилання на статичне медіа. Наприклад, зображення може бути вставлене в HTML сторінку з використанням тегу ``<img />``. 
+#. Не забувайте використовувати ``{% load staticfiles %}`` та ``{% static "filename" %}`` в шаблонах для доступу до статичних файлів.
 
-The next chapter will look at databases. We'll see how to make use of Django's excellent database layer to make your life easier and SQL free!
+В наступному розділі розгядається база даних. Ми побачимо як користуватися чудовими інструментами баз даних Django щоб зробити життя легшим та вільним від SQL!
 
-Exercises
----------
-Give the following exercises a go to reinforce what you've learnt from this chapter.
+Вправи
+------
+Виконайте наступні вправи щоб зміцнити те, що ви дізналися з цієї глави.
 
-* Convert the about page to use a template too from a template called ``about.html``.
-* Within the ``about.html`` template, add a picture stored within your project's static media.
+* Зробіть щоб сторінка "about" використовувала шаблон на ім'я ``about.html``.
+* До шаблону ``about.html`` додайте зображення зі статичних медіа вашого проекту.
