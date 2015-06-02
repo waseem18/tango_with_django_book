@@ -139,19 +139,50 @@ You should now have an updated version of Python installed, ready for Django! Ea
 
 Linux Distributions
 ...................
-Unfortunately, there are many different ways in which you can download, install and run an updated version of Python on your Linux distribution. To make matters worse, methodologies vary from distribution to distribution. For example, the instructions for installing Python on `Fedora <http://fedoraproject.org/>`_ may differ from those to install it on an `Ubuntu <http://www.ubuntu.com/>`_ installation.
+Unfortunately, there are many different ways in which you can download, install and run an updated version of Python on your Linux distribution. To make matters worse, methodologies vary from distribution to distribution. For example, the instructions for installing Python on `Fedora <https://github.com/yyuu/pyenv>`_ may differ from those to install it on an `Ubuntu <http://www.ubuntu.com/>`_ installation.
 
-However, not all hope is lost. An awesome tool (or a *Python environment manager*) called `pythonbrew <https://github.com/utahta/pythonbrew>`_ can help us address this difficulty. It provides an easy way to install and manage different versions of Python, meaning you can leave your operating system's default Python installation alone. Hurrah!
+However, not all hope is lost. An awesome tool (or a *Python environment manager*) called `pyenv <https://github.com/utahta/pythonbrew>`_ can help us address this difficulty. It provides an easy way to install and manage different versions of Python, meaning you can leave your operating system's default Python installation alone. Hurrah!
 
-Taken from the instructions provided from `the pythonbrew GitHub page <https://github.com/utahta/pythonbrew>`_ and `this Stack Overflow question and answer page <http://stackoverflow.com/questions/5233536/python-2-7-on-ubuntu>`_, the following steps will install Python 2.7.5 on your Linux distribution.
+Taken from the instructions provided from `the pyenv GitHub page <https://github.com/yyuu/pyenv>`_, the following steps will install Python 2.7.9 on your Linux distribution.
 
-#. Open a new terminal instance.
-#. Run the command ``curl -kL http://xrl.us/pythonbrewinstall | bash``. This will download the installer and run it within your terminal for you. This installs pythonbrew into the directory ``~/.pythonbrew``. Remember, the tilde (``~``) represents your home directory!
-#. You then need to edit the file ``~/.bashrc``. In a text editor (such as ``gedit``, ``nano``, ``vi`` or ``emacs``), add the following to a new line at the end of ``~/.bashrc``: ``[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc``
-#. Once you have saved the updated ``~/.bashrc`` file, close your terminal and open a new one. This allows the changes you make to take effect.
-#. Run the command ``pythonbrew install 2.7.5`` to install Python 2.7.5.
-#. You then have to *switch* Python 2.7.5 to the *active* Python installation. Do this by running the command ``pythonbrew switch 2.7.5``.
-#. Python 2.7.5 should now be installed and ready to go.
+1. Open a new terminal instance.
+2. Install curl
+::
+	$ sudo apt-get install curl
+3. Install ``pyenv``
+::
+	$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+This will download the installer and run it within your terminal for you. This installs pyenv into the directory ``~/.pyenv``. Remember, the tilde (``~``) represents your home directory!
+
+4. Add to `.bashrc`
+::
+	$ nano ~/.bashrc
+
+	export PATH="$HOME/.pyenv/bin:$PATH"
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+`pyenv` will likely tell you to do this once installed.
+To edit the file ``~/.bashrc`` in a text editor (such as `gedit`, `nano`, `vi` or `emacs`)
+
+5. Once you have saved the updated ``~/.bashrc`` file, close your terminal and open a new one. This allows the changes you make to take effect.
+
+6. There are often `build problems <https://github.com/yyuu/pyenv/wiki/Common-build-problems>`_ to avoid these
+::
+	$ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+	libreadline-dev libsqlite3-dev wget curl llvm
+
+7. Install a Python version of your choosing
+::
+	$ pyenv install 2.7.9
+This will install Python version 2.7.9 into `~/.pyenv/versions`
+
+8. Now you can change the `local` or `global` version of Python
+::
+	$ pyenv versions
+	* system
+	  2.7.9
+
+	$ pyenv global 2.7.9
 
 .. note:: Directories and files beginning with a period or dot can be considered the equivalent of *hidden files* in Windows. `Dot files <http://en.wikipedia.org/wiki/Dot-file>`_ are not normally visible to directory-browsing tools, and are commonly used for configuration files. You can use the ``ls`` command to view hidden files by adding the ``-a`` switch to the end of the command, giving the command ``ls -a``.
 
@@ -399,5 +430,4 @@ To get comfortable with your environment, try out the following exercises.
 * We have made the code for the book and application that you build available on GitHub, see `Tango With Django Book <https://github.com/leifos/tango_with_django_book>`_  and  `Rango Application <https://github.com/leifos/tango_with_django>`_ .
 	* If you spot any errors or problem with the book, you can make a change request! 
 	* If you have any problems with the exercises, you can check out the repository and see how we completed them.
-
 
