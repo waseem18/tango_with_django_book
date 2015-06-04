@@ -284,9 +284,9 @@ Update the ``login.html`` template as follows:
 
         <h2 class="form-signin-heading">Please sign in</h2>
         <input class="form-control" placeholder="Username" id="id_username" maxlength="254" name="username" type="text" required autofocus=""/>
-        <input type="password" class="form-control" placeholder="Password" id="id_password" name="password" type="password" required />
+        <input type="password" class="form-control" placeholder="Password" id="id_password" name="password"  required />
 
-  		<button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />Sign in</button>
+  		<button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" >Sign in</button>
 		</form>
 
 	{% endblock %}
