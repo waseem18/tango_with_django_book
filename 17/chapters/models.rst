@@ -116,7 +116,7 @@ If you have not done so already you first need to initial the database. This is 
 	  Applying sessions.0001_initial... OK
 	  
 	  
-If you rememnber in ``settings.py`` there was a list of INSTALLED_APPS, this initial call to migrate, creates the tables for the associated apps, i.e. auth, admin, etc. There should be a file called, ``db.sqlite`` in your project base directory.
+If you remember in ``settings.py`` there was a list of INSTALLED_APPS, this initial call to migrate, creates the tables for the associated apps, i.e. auth, admin, etc. There should be a file called, ``db.sqlite`` in your project base directory.
 
 Now you will want to create a superuser to manage the database. Run the following command.
 

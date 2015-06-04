@@ -109,7 +109,7 @@ To start, let's create a new Python module called ``bing_search.py`` within our 
 	            'summary': result['Description']})
 
 	    # Catch a URLError exception - something went wrong when connecting!
-	    except urllib2.URLError, e:
+	    except urllib2.URLError as e:
 	        print "Error when querying the Bing API: ", e
 
 	    # Return the list of results to the calling function.
