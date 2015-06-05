@@ -268,7 +268,7 @@ HTML Template code:
 
 JQuery code:
 
-.. code-block: javascript
+.. code-block:: javascript
 
 	$('.rango-add').click(function(){
 	    var catid = $(this).attr("data-catid");

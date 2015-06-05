@@ -80,7 +80,7 @@ The model also comes with other attributes such as ``is_active`` (which determin
 
 Additional User Attributes
 --------------------------
-If you would like to include other attributes than what is provided by the ``User`` model, then you will needed to create a model that is associated with the the ``User`` model. For our Rango application, we want to include two more additional attributes for each user account. Specifically, we wish to include:
+If you would like to include other attributes than what is provided by the ``User`` model, then you have two options: (1) extend the ``User`` model by creating a new user model from ``AbstractUser`` (see the `official Django Document on extending Django's default user`_<https://docs.djangoproject.com/en/1.7/topics/auth/customizing/#extending-django-s-default-user> or (2) create a model with a one-to-one association with the the ``User`` model. In this tutorial, we will create an associated model. For our Rango application, we want to include two more additional attributes for each user account. Specifically, we wish to include:
 
 - a ``URLField``, allowing a user of Rango to specify their own website; and
 - a ``ImageField``, which allows users to specify a picture for their user profile.
