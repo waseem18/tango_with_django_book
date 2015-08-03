@@ -104,7 +104,7 @@ Now lets run test:
 	
 
 
-As we can see this test fails. This is because the model does not check whether the value is less than zero or not. Since we really want to ensure that the values are non-zero, we will need to update the model, to ensure that this requirement is fulfilled. Do this now by adding some code to the Catgegory models, ``save()`` method, that checks the value of views, and updates it accordingly.
+As we can see this test fails. This is because the model does not check whether the value is less than zero or not. Since we really want to ensure that the values are non-zero, we will need to update the model, to ensure that this requirement is fulfilled. Do this now by adding some code to the Category models, ``save()`` method, that checks the value of views, and updates it accordingly.
 
 
 Once you have updated your model, you can now re-run the test, and see if your code now passes it. If not, try again.
