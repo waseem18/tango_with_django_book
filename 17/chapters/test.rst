@@ -131,7 +131,7 @@ Does your code still work?
 
 Testing Views
 -------------
-So far we have writtent tests that focus on ensuring the integrity of the data housed in the models. Django also provides testing mechanisms to test views. It does this with a mock client, that internally makes a calls a django view via the url. In the test you have access to the response (including the html) and the context dictionary. 
+So far we have writtent tests that focus on ensuring the integrity of the data housed in the models. Django also provides testing mechanisms to test views. It does this with a mock client, that internally calls a django view via the url. In the test you have access to the response (including the html) and the context dictionary. 
 
 Let's create a test that checks that when the index page loads, it displays the message that ``There are no categories present``, when the Category model is empty. 
 
