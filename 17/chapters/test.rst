@@ -120,7 +120,7 @@ Let's try adding another test, that ensures an appropriate slug line is created 
 			i.e. "Random Category String" -> "random-category-string"
 			"""
 
-			cat = cat('Random Category String')
+			cat = Category('Random Category String')
 			cat.save()
 			self.assertEqual(cat.slug, 'random-category-string')
 
