@@ -38,7 +38,7 @@ Of the the five tabs provided, we'll be working primarily with the *consoles* an
 
 Creating a Virtual Environment
 ------------------------------
-As part of a its standard installation, PythonAnywhere comes with a number of packages pre-installed (i.e Python 2.7.4 and Django 1.3). However, since we are using a different setup, we need to setup a virtual environment and run our application inside that. Since our code base is compatible with Python 2.7.4 we can continue use that, but we will have to set up our virtual environment to use Django 1.5.4.
+As part of a its standard installation, PythonAnywhere comes with a number of packages pre-installed (i.e Python 2.7.4 and Django 1.3). However, since we are using a different setup, we need to setup a virtual environment and run our application inside that. Since our code base is compatible with Python 2.7.4 we can continue use that, but we will have to set up our virtual environment to use Django 1.7.
 
 First, open a Bash console from the PythonAnywhere *Consoles* tab by clicking the *Bash* link. When the terminal is ready for you to interact, enter the following commands.
 
