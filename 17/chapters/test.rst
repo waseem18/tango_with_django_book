@@ -104,7 +104,7 @@ Now lets run test:
 	
 
 
-As we can see this test fails. This is because the model does not check whether the value is less than zero or not. Since we really want to ensure that the values are non-zero, we will need to update the model, to ensure that this requirement is fulfilled. Do this now by adding some code to the Catgegory models, ``save()`` method, that checks the value of views, and updates it accordingly.
+As we can see this test fails. This is because the model does not check whether the value is less than zero or not. Since we really want to ensure that the values are non-zero, we will need to update the model, to ensure that this requirement is fulfilled. Do this now by adding some code to the Category models, ``save()`` method, that checks the value of views, and updates it accordingly.
 
 
 Once you have updated your model, you can now re-run the test, and see if your code now passes it. If not, try again.
@@ -120,7 +120,7 @@ Let's try adding another test, that ensures an appropriate slug line is created 
 			i.e. "Random Category String" -> "random-category-string"
 			"""
 
-			cat = cat('Random Category String')
+			cat = Category('Random Category String')
 			cat.save()
 			self.assertEqual(cat.slug, 'random-category-string')
 
@@ -131,7 +131,7 @@ Does your code still work?
 
 Testing Views
 -------------
-So far we have writtent tests that focus on ensuring the integrity of the data housed in the models. Django also provides testing mechanisms to test views. It does this with a mock client, that internally makes a calls a django view via the url. In the test you have access to the response (including the html) and the context dictionary. 
+So far we have writtent tests that focus on ensuring the integrity of the data housed in the models. Django also provides testing mechanisms to test views. It does this with a mock client, that internally calls a django view via the url. In the test you have access to the response (including the html) and the context dictionary. 
 
 Let's create a test that checks that when the index page loads, it displays the message that ``There are no categories present``, when the Category model is empty. 
 

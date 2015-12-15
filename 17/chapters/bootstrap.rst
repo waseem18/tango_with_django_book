@@ -100,7 +100,7 @@ The New Base Template
 	</html>
 
 
-If you take a close look at the dashboard html source, you'll notice it has a lot of structure in it created by a series of ``<div>`` tags. Essentially the page is broken into two parts - the top navigation bar and the main pane which are denoted by the two ``<div class="container-fluid">``s. In the nav bar section, we have injected all the links to the different parts of our website. Inside the main pane, there are two columns, one for the ``side_block``, and the other for the ``body_block``.
+If you take a close look at the dashboard html source, you'll notice it has a lot of structure in it created by a series of ``<div>`` tags. Essentially the page is broken into two parts - the top navigation bar and the main pane which are denoted by the two ``<div class="container-fluid">`` tags. In the nav bar section, we have injected all the links to the different parts of our website. Inside the main pane, there are two columns, one for the ``side_block``, and the other for the ``body_block``.
 
 
 Quick Style Change
