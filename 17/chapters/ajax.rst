@@ -175,7 +175,7 @@ In this helper function we use a filter to find all the categories that start wi
 			cat_list = Category.objects.filter(name__istartswith=starts_with)
 		
 		if max_results > 0:
-			if len(cat_list) > max_results:
+			if cat_list.count() > max_results:
 				cat_list = cat_list[:max_results]
 			
 		return cat_list
