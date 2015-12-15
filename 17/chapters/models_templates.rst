@@ -245,8 +245,8 @@ Now let's create our template for the new view.  In ``<workspace>/tango_with_dja
 	    </head>
 	
 	    <body>
-	        <h1>{{ category_name }}</h1>
 	        {% if category %}
+	        <h1>{{ category_name }}</h1>
 	            {% if pages %}
 	            <ul>
 	                {% for page in pages %}
