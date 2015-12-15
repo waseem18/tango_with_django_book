@@ -40,14 +40,13 @@ Creating a Virtual Environment
 ------------------------------
 As part of a its standard installation, PythonAnywhere comes with a number of packages pre-installed (i.e Python 2.7.4 and Django 1.3). However, since we are using a different setup, we need to setup a virtual environment and run our application inside that. Since our code base is compatible with Python 2.7.4 we can continue use that, but we will have to set up our virtual environment to use Django 1.7.
 
-First, open a Bash console from the PythonAnywhere *Consoles* tab by clicking the *Bash* link. When the terminal is ready for you to interact, enter the following commands.
+First, open a Bash console from the PythonAnywhere *Consoles* tab by clicking the *Bash* link. When the terminal is ready for you to interact, enter the following command.
 
 ::
 
-	$ source virtualenvwrapper.sh
 	$ mkvirtualenv rango
 
-The first command imports the virtual environment wrapper. The wrapper provides a series of extensions by `Doug Hellman <http://doughellmann.com/>`_ to the original ``virtualenv`` tool, making it easier for us to create, delete and use virtual environments. The second command creates a new virtual environment called ``rango``. This process should take a short while to create, after which you will be presented with a slightly different prompt.
+By default, PythonAnywhere includes a system called the virtual environment wrapper. The wrapper provides a series of extensions by `Doug Hellman <http://doughellmann.com/>`_ to the original ``virtualenv`` tool, making it easier for us to create, delete and use virtual environments. The command uses one of these to create a new virtual environment called ``rango``. This process should take a short while to create, after which you will be presented with a slightly different prompt.
 
 ::
 
@@ -81,11 +80,7 @@ Once installed, check if Django has been installed with the command ``which djan
 
 Virtual Environment Switching
 .............................
-Moving between virtual environments can be done pretty easily. First you  need to make sure that ``virtualenvwrapper.sh`` has been loaded by running ``source virtualenvwrapper.sh``.
-
-Rather than doing this each time you open up a console, you can add it to your  ``.bashrc`` profile which is located in your home directory. Doing so will ensure the command is executed automatically for you every time you start a new Bash console instance. Any Bash consoles active will need to be closed for the changes to take effect.
-
-With this done, you can then launch into a pre-existing virtual environment with the ``workon`` command. To load up the rango environment, enter:
+Moving between virtual environments can be done pretty easily.  When you start a new bash shell, it will not be using a virtual environment, but you can launch into a pre-existing one with the ``workon`` command. To load up the rango environment, enter:
 
 ::
 
