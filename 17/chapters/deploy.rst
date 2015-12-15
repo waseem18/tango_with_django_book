@@ -149,9 +149,11 @@ A popup box will then appear. Follow the instructions on-screen, and when the ti
 
 Then, navigate to the PythonAnywhere subdomain at ``http://<username>.pythonanywhere.com`` in a new browser tab. You should be presented with the default ``Hello, World!`` webpage. This is because the WSGI script is currently serving up this page and not your Django application.
 
-Configuring the WSGI Script
-...........................
-The `Web Server Gateway Interface <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_, a.k.a. WSGI provides a simple and universal interface between web servers and web applications. PythonAnywhere uses WSGI to bridge the server-application link and map incoming requests to your subdomain to your web application.
+Configuring the WSGI Script and its virtual environment
+.......................................................
+The first step to get your web application working on PythonAnywhere is to specify which virtual environment it should use.  Right now you only have one, but you could have any number, so the system needs to be told which one to use.  To do this, navigate to the *Web* tab in PythonAnywhere's dashboard and look for the "Virtualenv" section.  It will say something like "Enter a path to a virtualenv, if desired".  Click there, and enter the full path to your virtual environment, eg. `/home/<username>/.virtualenvs/rango/bin/activate_this.py`.
+
+The next step is to configure the WSGI file.  The `Web Server Gateway Interface <http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_, a.k.a. WSGI provides a simple and universal interface between web servers and web applications. PythonAnywhere uses WSGI to bridge the server-application link and map incoming requests to your subdomain to your web application.
 
 To configure the WSGI script, navigate to the *Web* tab in PythonAnywhere's dashboard. From there, click the Web tab. Under the Code heading you can see a link to the WSGI configuration file: e.g. ``/var/www/<username>_pythonanywhere_com_wsgi.py``
 
@@ -159,9 +161,6 @@ The good people at PythonAnywhere have set up a sample WSGI file for us with sev
 
 .. code-block:: python
 
-	# TURN ON THE VIRTUAL ENVIRONMENT FOR YOUR APPLICATION
-	activate_this = '/home/<username>/.virtualenvs/rango/bin/activate_this.py'
-	execfile(activate_this, dict(__file__=activate_this))
 	import os
 	import sys
 
@@ -187,7 +186,7 @@ The good people at PythonAnywhere have set up a sample WSGI file for us with sev
 
 Ensure that you replace ``<username>`` with your username, and update any other path settings to suit your application. You should also remove all other code from the WSGI configuration script to ensure no conflicts take place.
 
-The code sample above begins by activating your virtual environment ``rango`` as this has been configured with all the required packages. The script then adds your project's directory to the ``PYTHONPATH`` for the Python instance that runs your web application. This allows Python to access your project's modules. If you have additional paths to add, you can easily insert them here. You can then specify the location of your project's ``settings.py`` module. The final step is to include the Django WSGI handler and invoke it for your application.
+The code sample above begins by adding your project's directory to the ``PYTHONPATH`` for the Python instance that runs your web application. This allows Python to access your project's modules. If you have additional paths to add, you can easily insert them here. You can then specify the location of your project's ``settings.py`` module. The final step is to include the Django WSGI handler and invoke it for your application.
 
 When you have completed the WSGI configuration, click the *Save* button at the top-right of the webpage. Navigate back to the *Web* tab within the PythonAnywhere dashboard, and click the *Reload* button at the top of the page. When the application is reloaded, visiting ``http://<username>.pythonanywhere.com`` should present you with your Django application, all ready to go!
 
