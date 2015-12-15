@@ -3,7 +3,7 @@
 Deploying Your Project
 ======================
 
-This chapter provides a step-by-step guide on how to deploy your Django applications. We'll be looking at deploying applications on `PythonAnywhere <https://www.pythonanywhere.com/>`_, an online IDE and web hosting service. The service provides in-browser access to the server-based Python and Bash command line interfaces, meaning you can interact with PythonAnywhere's servers just like you would with a regular terminal instance on your own computer. Currently, PythonAnywhere are offering a free account which sets you up with an adequate amount of storage space and CPU time to get a Django application up and running. 
+This chapter provides a step-by-step guide on how to deploy your Django applications. We'll be looking at deploying applications on `PythonAnywhere <https://www.pythonanywhere.com/>`_, an online IDE and web hosting service. The service provides in-browser access to the server-based Python and Bash command line interfaces, meaning you can interact with PythonAnywhere's servers just like you would with a regular terminal instance on your own computer. Currently, PythonAnywhere are offering a free account which sets you up with an adequate amount of storage space and CPU time to get a Django application up and running.
 
 
 .. note:: You can do this chapter independently (assuming you have some knowledge of git, if not refer to the chapter on using git).
@@ -24,7 +24,7 @@ The PythonAnywhere web interface contains a *dashboard* which in turn provides a
 * a *schedule* tab, allowing you to setup tasks to be executed at particular times; and
 * a *databases* tab, which allows you to configure a MySQL instance for your applications should you require it.
 
-Of the the five tabs provided, we'll be working primarily with the *consoles* and *web* tabs. The `PythonAnywhere wiki <https://www.pythonanywhere.com/wiki/>`_ provides a series of detailed explanations on how to use the other tabs.
+Of the the five tabs provided, we'll be working primarily with the *consoles* and *web* tabs. The `PythonAnywhere help pages <https://help.pythonanywhere.com/>`_ provide a series of detailed explanations on how to use the other tabs.
 
 .. _fig-deploy-pythonanywhere:
 
@@ -43,38 +43,38 @@ As part of a its standard installation, PythonAnywhere comes with a number of pa
 First, open a Bash console from the PythonAnywhere *Consoles* tab by clicking the *Bash* link. When the terminal is ready for you to interact, enter the following commands.
 
 ::
-	
+
 	$ source virtualenvwrapper.sh
 	$ mkvirtualenv rango
 
 The first command imports the virtual environment wrapper. The wrapper provides a series of extensions by `Doug Hellman <http://doughellmann.com/>`_ to the original ``virtualenv`` tool, making it easier for us to create, delete and use virtual environments. The second command creates a new virtual environment called ``rango``. This process should take a short while to create, after which you will be presented with a slightly different prompt.
 
 ::
-	
+
 	(rango)16:38 ~ $
 
 Note the inclusion of ``(rango)`` compared to your previous command prompt. This signifies that we have activated the ``rango`` virtual environment, so any package installations will be done within that environment, leaving the wider system setup alone. If you then issue the command ``ls -la``, you will see that a directory called ``.virtualenvs`` has been created. This is the directory in which all of your virtual environments and associated packages will be stored. To confirm the setup, issue the command ``which pip``. This will print the location in which the active ``pip`` binary is located - hopefully within ``.virtualenvs`` and ``rango``, as shown in the example below.
 
 ::
-	
+
 	/home/<username>/.virtualenvs/test/bin/pip
 
 Now we can customise our virtual environment by installing the required packages for our Rango application. Installing may take a considerable amount of time to install as your CPU time is limited - so have some patience. Install all the required packages:
 
 ::
-	
+
 	$ pip install -U django==1.7
 	$ pip install pillow
 	$ pip install django-registration-redux
 	$ pip install django-bootstrap-toolkit
-	
+
 
 Aternatively, you could use ``pip freeze > requirements.txt`` to save your current development environment, and then on PythonAnywhere, run ``pip install -r requirements.txt`` to install all the packages in a job lot.
 
-Once installed, check if Django has been installed with the command ``which django-admin.py``. You should receive output similar to the following example.  
+Once installed, check if Django has been installed with the command ``which django-admin.py``. You should receive output similar to the following example.
 
 ::
-	
+
 	/home/<username>/.virtualenvs/rango/bin/django-admin.py
 
 .. note:: PythonAnywhere also provides instructions on how to setup virtual environments, see https://www.pythonanywhere.com/wiki/VirtualEnvForNewerDjango.
@@ -88,21 +88,21 @@ Rather than doing this each time you open up a console, you can add it to your  
 With this done, you can then launch into a pre-existing virtual environment with the ``workon`` command. To load up the rango environment, enter:
 
 ::
-	
+
 	16:48 ~ $ workon rango
-	
-where ``rango`` can be replaced with the name of the virtual environment you wish to use. Your prompt should then change to indicate you are working within a virtual environment. 
+
+where ``rango`` can be replaced with the name of the virtual environment you wish to use. Your prompt should then change to indicate you are working within a virtual environment.
 
 ::
-	
+
 	(rango) 16:49 ~ $
 
 
 You can then leave the virtual environment using the ``deactivate`` command. Your prompt should then be missing the ``(rango)`` prefix, with an example shown below.
 
 ::
-	
-	(rango) 16:49 ~ $ deactivate 
+
+	(rango) 16:49 ~ $ deactivate
 	16:51 ~ $
 
 Cloning your Git Repository
@@ -110,7 +110,7 @@ Cloning your Git Repository
 Now that your virtual environment for Rango is all setup, you can now clone your Git repository to obtain a copy of your project's files. Clone your repository by issuing the following command from your home directory:
 
 ::
-	
+
 	$ git clone https://<USERNAME>:<PASSWORD>@github.com/<OWNER>/<REPO_NAME>.git
 
 where you replace
@@ -123,10 +123,10 @@ where you replace
 If you haven't put your code in a Git repository, you can clone the version we have made, by issuing the following command:
 
 ::
-	
+
 	16:54 ~ $ git clone https://github.com/leifos/tango_with_django17.git
-	
-	
+
+
 #TODO(leifos): upload code to github
 
 .. note:: It doesn't matter if you clone your Git repository within your new virtual environment or not. You're only creating files within your disk quota, which doesn't require your special Python setup.
@@ -136,13 +136,13 @@ Setting Up the Database
 With your files cloned, you must then prepare your database. We'll be using the ``populate_rango.py`` module that we created earlier in the book. As we'll be running the module, you must ensure that you are using the ``rango`` virtual environment (i.e. ``workon rango``). From your home directory, move into the ``tango_with_django`` directory, and issue the following commands
 
 ::
-	
-	
+
+
 	(rango) 16:55 ~/tango_with_django $ python manage.py makemigrations rango
 	(rango) 16:55 ~/tango_with_django $ python manage.py migrate
 	(rango) 16:56 ~/tango_with_django $ python populate_rango.py
 	(rango) 16:57 ~/tango_with_django $ python manage.py createsuperuser
-	
+
 
 As discussed earlier in the book, the first command creates the migrations for the rango application, then the migrate command creates the SQLlite3 database. Once the database is created, the database can be populated and a superuser created.
 
@@ -152,7 +152,7 @@ Now that the database is setup, we need to configure the PythonAnywhere NGINX we
 
 A popup box will then appear. Follow the instructions on-screen, and when the time comes, select the *manual configuration* option and complete the wizard.
 
-Then, navigate to the PythonAnywhere subdomain at ``http://<username>.pythonanywhere.com`` in a new browser tab. You should be presented with the default ``Hello, World!`` webpage. This is because the WSGI script is currently serving up this page and not your Django application. 
+Then, navigate to the PythonAnywhere subdomain at ``http://<username>.pythonanywhere.com`` in a new browser tab. You should be presented with the default ``Hello, World!`` webpage. This is because the WSGI script is currently serving up this page and not your Django application.
 
 Configuring the WSGI Script
 ...........................
@@ -163,7 +163,7 @@ To configure the WSGI script, navigate to the *Web* tab in PythonAnywhere's dash
 The good people at PythonAnywhere have set up a sample WSGI file for us with several possible configurations. For your web application, you'll need to configure the Django section of the file. The example below demonstrates a possible configuration for you application.
 
 .. code-block:: python
-	
+
 	# TURN ON THE VIRTUAL ENVIRONMENT FOR YOUR APPLICATION
 	activate_this = '/home/<username>/.virtualenvs/rango/bin/activate_this.py'
 	execfile(activate_this, dict(__file__=activate_this))
@@ -174,21 +174,21 @@ The good people at PythonAnywhere have set up a sample WSGI file for us with sev
 	path = '/home/<username>/tango_with_django_17/'
 	if path not in sys.path:
 	    sys.path.append(path)
-		
+
 	# IMPORTANTLY GO TO THE PROJECT DIR
 	os.chdir(path)
 
 	# TELL DJANGO WHERE YOUR SETTINGS MODULE IS LOCATED
 	os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project_17.settings')
-	
+
 	# IMPORT THE DJANGO SETUP - NEW TO 1.7
 	import django
 	django.setup()
-	
+
 	# IMPORT THE DJANGO WSGI HANDLER TO TAKE CARE OF REQUESTS
 	import django.core.handlers.wsgi
 	application = django.core.handlers.wsgi.WSGIHandler()
-	
+
 
 Ensure that you replace ``<username>`` with your username, and update any other path settings to suit your application. You should also remove all other code from the WSGI configuration script to ensure no conflicts take place.
 
@@ -223,7 +223,7 @@ When you application is ready to go, it's a good idea to instruct Django that yo
 Changing the value of ``DEBUG`` also means you should set the ``ALLOWED_HOSTS`` property. Failing to perform this step will make Django return ``HTTP 400 Bad Request`` errors. Alter ``ALLOWED_HOSTS`` so that it includes your PythonAnywhere subdomain like in the example below.
 
 .. code-block:: python
-	
+
 	ALLOWED_HOSTS = ['<username>.pythonanywhere.com']
 
 Again, ensure ``<username>`` is changed to your PythonAnywhere username. Once complete, save the file and reload the application via the PythonAnywhere web interface.
@@ -245,7 +245,7 @@ When debugging, you may find it useful to delete or move the log files so that y
 
 Exercises
 ---------
-Congratulations, you've successfully deployed Rango! 
+Congratulations, you've successfully deployed Rango!
 
-* Tweet a link of your application to `@tangowithdjango <https://twitter.com/tangowithdjango>`_. 
+* Tweet a link of your application to `@tangowithdjango <https://twitter.com/tangowithdjango>`_.
 * Or email us to let us know, and tell us your thoughts on the book.
