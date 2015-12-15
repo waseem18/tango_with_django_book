@@ -145,7 +145,7 @@ Setting up your Web Application
 -------------------------------
 Now that the database is setup, we need to configure the PythonAnywhere NGINX webserver to serve up your application . Within PythonAnywhere's web interface, navigate to your *dashboard* and click on the *Web* tab. On the left of the page that appears, click *Add a new web app.*
 
-A popup box will then appear. Follow the instructions on-screen, and when the time comes, select the *manual configuration* option and complete the wizard.
+A popup box will then appear. Follow the instructions on-screen, and when the time comes, select the *manual configuration* option.  On the next page, select "Python 2.7", and then complete the wizard.
 
 Then, navigate to the PythonAnywhere subdomain at ``http://<username>.pythonanywhere.com`` in a new browser tab. You should be presented with the default ``Hello, World!`` webpage. This is because the WSGI script is currently serving up this page and not your Django application.
 
