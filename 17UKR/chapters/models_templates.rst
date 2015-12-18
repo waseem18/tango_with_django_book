@@ -2,8 +2,8 @@
 
 Моделі, Шаблони і Види
 ======================
-Тепер, коли ми маємо налаштовані та заповнені тестовими даними моделі, почнемо збирати речі докупи. 
-Ми будемо з'ясувати як види отримують дані з моделей, та як виводити ці дані за допомогою шаблонів.
+Тепер, коли ми маємо налаштовані та заповнені тестовими даними моделі, почнемо збирати речі докупи.
+Ми будемо з'ясовувати як види отримують дані з моделей, та як виводити ці дані за допомогою шаблонів.
 
 Основні кроки: Сторінки керовані даними
 ---------------------------------------
@@ -26,32 +26,32 @@
 Щоб задовольнити цю вимогу,виконаємо кожен з наведених кроків. По-перше, відкрийте ``rango/views.py`` і імпортуйте модель ``Category`` з файлу Rango ``models.py``.
 
 .. code-block:: python
-	
-	# Імпорт моделі Category
-	from rango.models import Category
+
+    # Імпорт моделі Category
+    from rango.models import Category
 
 Змінюємо вид Index
 ..................
 Після виконання першого кроку, потрібно змінити функцію ``index()``. Ми повинні пам'ятати, що функція несе відповідальність за вид головної сторінки. Модифікуємо її, як показано нижче.
 
 .. code-block:: python
-	
-	def index(request):
-	    # Запит з бази даних переліку всіх збережених категорій.
-	    # Сортуємо категорії за кількістю лайків у спадному порядку.
-	    # Беремо тільки перші 5 - або всі, якщо їх менше п'яти.
-	    # Вкладаємо перелік до нашого словника context_dict, котрий передамо до рушія шаблонів.
-	    category_list = Category.objects.order_by('-likes')[:5]
-	    context_dict = {'categories': category_list}
-	    
-	    # Створюємо відповідь та надсилаємо її назад!
-	    return render(request, 'rango/index.html', context_dict)
+
+    def index(request):
+        # Запит з бази даних переліку всіх збережених категорій.
+        # Сортуємо категорії за кількістю лайків у спадному порядку.
+        # Беремо тільки перші 5 - або всі, якщо їх менше п'яти.
+        # Вкладаємо перелік до нашого словника context_dict, котрий передамо до рушія шаблонів.
+        category_list = Category.objects.order_by('-likes')[:5]
+        context_dict = {'categories': category_list}
+
+        # Створюємо відповідь та надсилаємо її назад!
+        return render(request, 'rango/index.html', context_dict)
 
 Щойно, ми виконали кроки два і три за один прийом. Спочатку, ми виконали запит до моделі ``Category``, щоб отримати перші п'ять категорій. Було використано метод  ``order_by()`` для сортування за кількістю лайків у спадному порядку - звідси включення ``-``. Потім ми обмежили перелік до перших 5 об'єктів ``Category`` в списку.
 
 Після виконання запиту, ми передали посилання на список (збережене як змінна ``category_list``) до словника ``context_dict``. Цей словник, в свою чергу, передано до рушія шаблонів як частину контексту у виклику ``render()``.
 
-.. warning:: Зауважте, що модель Category має поле ``likes``. Має, якщо ви виконали вправу з попередньої глави, тобто модель Category потрібно оновити, щоб вона отримала поле ``likes``. 
+.. warning:: Зауважте, що модель Category має поле ``likes``. Має, якщо ви виконали вправу з попередньої глави, тобто модель Category потрібно оновити, щоб вона отримала поле ``likes``.
 
 
 Змінюємо шаблон Index
@@ -59,29 +59,29 @@
 Все, що залишилось зробити - змінити шаблон ``rango/index.html``, що розташований у теці проекту  ``templates``. Змініть код  HTML так, як показано нижче.
 
 .. code-block:: html
-	
-	<!DOCTYPE html>
-	<html>
-	    <head>
-	        <title>Rango</title>
-	    </head>
-	
-	    <body>
-	        <h1>Rango says...hello world!</h1>
-	
-	        {% if categories %}
-	            <ul>
-	                {% for category in categories %}
-	                <li>{{ category.name }}</li>
-	                {% endfor %}
-	            </ul>
-	        {% else %}
-	            <strong>There are no categories present.</strong>
-	        {% endif %}
-	        
-	        <a href="/rango/about/">About</a>
-	    </body>
-	</html>
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Rango</title>
+        </head>
+
+        <body>
+            <h1>Rango says...hello world!</h1>
+
+            {% if categories %}
+                <ul>
+                    {% for category in categories %}
+                    <li>{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no categories present.</strong>
+            {% endif %}
+
+            <a href="/rango/about/">About</a>
+        </body>
+    </html>
 
 Тут ми користуємося мовою шаблонів Django для обробки даних за допомогою контрольних структур ``if`` та ``for``. В межах ``<body>`` сторінки, ми перевіряємо чи  ``categories`` (змінна контексту з нашим переліком) містить будь які категорії (тобто ``{% if categories %}``).
 
@@ -89,16 +89,16 @@
 
 Якщо нема жодної категорії, друкується повідомлення про це.
 
-Як показує приклад, в мові шаблонів Django, всі команди розміщені поміж тегами ``{%`` і ``%}``, а змінні поміж дужками ``{{`` і ``}}`` . 
+Як показує приклад, в мові шаблонів Django, всі команди розміщені поміж тегами ``{%`` і ``%}``, а змінні поміж дужками ``{{`` і ``}}`` .
 
-Якщо тепер подивитися домашню сторінку Rango http://127.0.0.1:8000/rango/, то ми повинні побачити під назвою сторінки перелік з трьох категорій, як на малюнку :num:`fig-rango-categories-simple`. 
+Якщо тепер подивитися домашню сторінку Rango http://127.0.0.1:8000/rango/, то ми повинні побачити під назвою сторінки перелік з трьох категорій, як на малюнку :num:`fig-rango-categories-simple`.
 
 .. _fig-rango-categories-simple:
 
 .. figure:: ../images/rango-categories-simple.png
-	:figclass: align-center
+    :figclass: align-center
 
-	Домашня сторінка Rango - відтепер динамічно генерована - показує перелік категорій. Як чудово!
+    Домашня сторінка Rango - відтепер динамічно генерована - показує перелік категорій. Як чудово!
 
 
 Створення сторінки подробиць
@@ -108,7 +108,7 @@
 
 Розробка URL та відображення
 ............................
-Давайте спочатку розглянемо проблему з URL. Один зі шляхів вирішення - використовувати в URL унікальний ID для кожної категорії. Наприклад,можна було б створити URL як ``/rango/category/1/`` або ``/rango/category/2/``, де номер відповідає категоріям з унікальним ID 1 і 2 відповідно. Однак, ці URL-ли не зрозумілі для людей. Хоча, ймовірно, ми могли б зробити висновок, що число відноситься до категорії - але як дізнатися до котрої? 
+Давайте спочатку розглянемо проблему з URL. Один зі шляхів вирішення - використовувати в URL унікальний ID для кожної категорії. Наприклад,можна було б створити URL як ``/rango/category/1/`` або ``/rango/category/2/``, де номер відповідає категоріям з унікальним ID 1 і 2 відповідно. Однак, ці URL-ли не зрозумілі для людей. Хоча, ймовірно, ми могли б зробити висновок, що число відноситься до категорії - але як дізнатися до котрої?
 
 Натомість, ми могли б просто використати ім'я категорії як частину URL. Рядок ``/rango/category/Python/`` повинен дати перелік сторінок пов'язаних з категорією Python. Це простий, читабельний і змістовний URL. Якщо ми підемо цим шляхом, то потрібно обробляти категорії що містять кілька слів, на зразок 'Other Frameworks' і так далі.
 
@@ -126,31 +126,31 @@
 Потім потрібно переписати метод ``save`` моделі ``Category``, котрий буде викликати метод ``slugify`` та оновлювати поле ``slug``. Зауважте, що кожного разу при зміні імені категорії поле slug також буде змінюватись. Оновіть модель як показано нижче і додайте імпорт.
 
 .. code-block:: python
-	
-	from django.template.defaultfilters import slugify
 
-	class Category(models.Model):
-		name = models.CharField(max_length=128, unique=True)
-		views = models.IntegerField(default=0)
-		likes = models.IntegerField(default=0)
-		slug = models.SlugField()
-		
-		def save(self, *args, **kwargs):
-			self.slug = slugify(self.name)
-			super(Category, self).save(*args, **kwargs)
+    from django.template.defaultfilters import slugify
 
-		def __unicode__(self):
-			return self.name
+    class Category(models.Model):
+        name = models.CharField(max_length=128, unique=True)
+        views = models.IntegerField(default=0)
+        likes = models.IntegerField(default=0)
+        slug = models.SlugField()
+
+        def save(self, *args, **kwargs):
+            self.slug = slugify(self.name)
+            super(Category, self).save(*args, **kwargs)
+
+        def __unicode__(self):
+            return self.name
 
 
-Після внесення змін до моделі потрібно виконати міграцію. 
+Після внесення змін до моделі потрібно виконати міграцію.
 
 .. code-block:: python
 
-	$ python manage.py makemigrations rango
-	$ python manage.py migrate
-	
-	
+    $ python manage.py makemigrations rango
+    $ python manage.py migrate
+
+
 Так як раніше не було поля злиття і ми маємо дані в базі - команда міграції запропонує два варіанти. Оберіть варіант за замовчуванням і введіть ''. Не турбуйтеся, оновлення виконається швидко. Тепер перезапустіть скрипт наповнення. Так як метод ``save`` викликається для кожної категорії і буде використано оновлений метод ``save`` - це оновить поле злиття. Запустіть сервер і переконайтеся в цьому за допомогою адмінки.
 
 Можливо, ви захочете щоб при зміні імені категорії в адмінці змінювалось і поле злиття. Щоб досягти цього змініть ``rango/admin.py`` таким чином:
@@ -158,17 +158,17 @@
 
 .. code-block:: python
 
-	
-	from django.contrib import admin
-	from rango.models import Category, Page
 
-	# додайте цей клас
-	class CategoryAdmin(admin.ModelAdmin):
-	    prepopulated_fields = {'slug':('name',)}
+    from django.contrib import admin
+    from rango.models import Category, Page
 
-	# та оновіть реєстрацію
-	admin.site.register(Category, CategoryAdmin)
-	admin.site.register(Page)
+    # додайте цей клас
+    class CategoryAdmin(admin.ModelAdmin):
+        prepopulated_fields = {'slug':('name',)}
+
+    # та оновіть реєстрацію
+    admin.site.register(Category, CategoryAdmin)
+    admin.site.register(Page)
 
 
 Випробуйте адмінку і додайте нову категорію. Чудово! Відтепер ми можемо використовувати поле злиття для отримання влучних url-лів :-).
@@ -176,10 +176,10 @@
 
 Розробка сторінки категорії
 ...........................
-Після URL-лів просуваємось далі. Нам потрібно виконати такі кроки:
+Зробивши URL-и, просуваємось далі. Нам потрібно виконати такі кроки:
 
 #. Імпортуємо модель Page до ``rango/views.py``.
-#. Створюємо новий вид в ``rango/views.py`` - називаємо ``category`` - вид ``category`` буде приймати додатковий параметр ``category_name_url`` з закодованим ім'ям категорії. 
+#. Створюємо новий вид в ``rango/views.py`` - називаємо ``category`` - вид ``category`` буде приймати додатковий параметр ``category_name_url`` з закодованим ім'ям категорії.
          * Нам буде потрібна допоміжна функція для кодування і декодування ``category_name_url``.
 #. Створюємо новий шаблон ``templates/rango/category.html``.
 #. Змінюємо ``urlpatterns`` Rango для відображення нового виду ``category`` на патерн URL в ``rango/urls.py``.
@@ -191,43 +191,43 @@ Category View
 Спочатку до ``rango/views.py`` потрібно імпортувати модель ``Page``. Додаємо, з початку файлу, такі команди:
 
 .. code-block:: python
-	
-	from rango.models import Page
+
+    from rango.models import Page
 
 Далі, додаємо новий вид ``category()``.
 
 .. code-block:: python
-	
-	def category(request, category_name_slug):
-	    
-	    # Створюємо словник контексту, котрий ми передамо до рушія шаблонів.
-	    context_dict = {}
-	    
-	    try:
-	        # Чи є в базі даних категорія з переданим полем злиття (category_name_slug)?
-	        # Якщо ні, метод .get() викличе застереження DoesNotExist.
-	        # Таким чином метод .get() або поверне екземпляр моделі, або виключення.
-	        category = Category.objects.get(slug=category_name_slug)
-	        context_dict['category_name'] = category.name
-	        
-	        # Отримаємо всі зв'язані сторінки
-	        # Зауважте, що фільтр повертає >= 1 екземплярів моделі
-	        pages = Page.objects.filter(category=category)
-	        
-	        # Додаємо результат до словника контексту під ім'ям  pages.
-	        context_dict['pages'] = pages
-	        # Також додаємо екземпляр категорії
-	        # Ми скористаємось цим в шаблоні, щоб переконатися, що категорія існує
-	        context_dict['category'] = category
-	    except Category.DoesNotExist:
-	        # Тут ми з'ясували, що потрібної категорії не знайдено
-	        # Нічого не робимо, шаблон відобразить повідомлення "no category" (нема категорії).
-	        pass
-	    
-	    # Відтворюємо відповідь та повертаємо її клієнту
-	    return render(request, 'rango/category.html', context_dict)
 
-Новий вид діє так само як і вид ``index()``. В першу чергу ми визначили словник контексту, потім спробували видобути відповідні дані з моделей та додати їх до словника контексту. Необхідну нам категорію ми знайшли, використавши переданий у функцію виду ``category()`` параметр ``category_name_slug``. Якщо потрібну категорію знайдено в моделі Category, ми можемо витягнути зв'язані сторінки  Pages, і додати їх до словника контексту ``context_dict``. 
+    def category(request, category_name_slug):
+
+        # Створюємо словник контексту, котрий ми потім передамо до рушія шаблонів.
+        context_dict = {}
+
+        try:
+            # Чи є в базі даних категорія з переданим полем злиття (category_name_slug)?
+            # Якщо ні, метод .get() викличе застереження DoesNotExist.
+            # Таким чином метод .get() або поверне екземпляр моделі, або виключення.
+            category = Category.objects.get(slug=category_name_slug)
+            context_dict['category_name'] = category.name
+
+            # Отримаємо всі зв'язані сторінки
+            # Зауважте, що фільтр повертає >= 1 екземплярів моделі
+            pages = Page.objects.filter(category=category)
+
+            # Додаємо результат до словника контексту під ім'ям  pages.
+            context_dict['pages'] = pages
+            # Також додаємо екземпляр категорії
+            # Ми скористаємось цим в шаблоні, щоб переконатися, що категорія існує
+            context_dict['category'] = category
+        except Category.DoesNotExist:
+            # Тут ми з'ясували, що потрібної категорії не знайдено
+            # Нічого не робимо, шаблон відобразить повідомлення "no category" (нема категорії).
+            pass
+
+        # Відтворюємо відповідь та повертаємо її клієнту
+        return render(request, 'rango/category.html', context_dict)
+
+Новий вид діє так само як і вид ``index()``. В першу чергу ми визначили словник контексту, потім спробували видобути відповідні дані з моделей та додати їх до словника контексту. Необхідну нам категорію ми знайшли, використавши переданий у функцію виду ``category()`` параметр ``category_name_slug``. Якщо потрібну категорію знайдено в моделі Category, ми можемо витягнути зв'язані сторінки  Pages, і додати їх до словника контексту ``context_dict``.
 
 
 Category Template
@@ -235,109 +235,109 @@ Category Template
 Тепер створимо шаблон для нового виду.  У каталозі ``<workspace>/tango_with_django_project/templates/rango/`` створіть ``category.html``. До створеного файлу додайте:
 
 .. code-block:: html
-	
-	<!DOCTYPE html>
-	<html>
-	    <head>
-	        <title>Rango</title>
-	    </head>
-	
-	    <body>
-	        <h1>{{ category_name }}</h1>
-	        {% if category %}
-	            {% if pages %}
-	            <ul>
-	                {% for page in pages %}
-	                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-	                {% endfor %}
-	            </ul>
-	            {% else %}
-	                <strong>No pages currently in category.</strong>
-	            {% endif %}
-	        {% else %}
-	            The specified category {{ category_name }} does not exist!
-	        {% endif %}
-	    </body>
-	</html>
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Rango</title>
+        </head>
+
+        <body>
+            <h1>{{ category_name }}</h1>
+            {% if category %}
+                {% if pages %}
+                <ul>
+                    {% for page in pages %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <strong>No pages currently in category.</strong>
+                {% endif %}
+            {% else %}
+                The specified category {{ category_name }} does not exist!
+            {% endif %}
+        </body>
+    </html>
 
 Цей HTML код знову демонструє, як використовувати передані до шаблону за допомогою словника контексту дані. Ми скористалися змінною ``category_name`` та об'єктами ``category`` і ``pages``. Якщо категорія ``category``  не визначена в контексті шаблону бо не знайдена в базі даних - показується відповідне повідомлення. Якщо навпаки, то намагаємось отримати ``pages``. Якщо ``pages`` не визначені, або не мають жодного елемента, також показується відповідне повідомлення. Інакше, сторінки вказаної категорії виводяться як список HTML. Для кожної сторінки зі списку ``pages`` показуються її атрибути ``title`` та ``url``.
 
 .. note:: Тег шаблонів Django - ``{% if %}`` - це точний засіб визначення існування об'єкту у контексті шаблона. Намагайтесь зробити звичною справою виконання таких перевірок, щоб зменшити кількість потенційних винятків, що можуть з'явитися у вашому коді.
-	  Також, розміщення перевірок, на зразок ``{% if category %}``, має семантичний сенс. Ці перевірки мають безпосередній вплив на те, якими будуть передані користувачу відпрацьовані сторінки, а питання презентації додатку Django  мають бути ізольовані у шаблонах.
+      Також, розміщення перевірок, на зразок ``{% if category %}``, має семантичний сенс. Ці перевірки мають безпосередній вплив на те, якими будуть передані користувачу відпрацьовані сторінки, а питання презентації додатку Django  мають бути ізольовані у шаблонах.
 
 Відображення URL з параметрами
 ..............................
 Тепер поглянемо на те, як передати значення параметру ``category_name_url`` до функції ``category()``. Щоб зробити це, змінимо файл Rango ``urls.py`` - оновимо кортеж ``urlpatterns`` як показано нижче.
 
 .. code-block:: python
-	
-	urlpatterns = patterns('',
-	    url(r'^$', views.index, name='index'),
-	    url(r'^about/$', views.about, name='about'),
-	    url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.category, name='category'),)  # додано!
+
+    urlpatterns = patterns('',
+        url(r'^$', views.index, name='index'),
+        url(r'^about/$', views.about, name='about'),
+        url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.category, name='category'),)  # додано!
 
 Як видно, ми додали досить складний запис з викликом ``view.category()`` для випадку коли регулярний вираз ``r'^(?P<category_name_slug>\w+)/$'`` узгоджується. Регулярний вираз налаштовано для пошуку будь-якої послідовності алфавітно-цифрових символів (як a-z, A-Z, або 0-9) і дефісу (-) перед останнім URL слешем. Це значення потім передається до виду ``views.category()`` в якості параметра ``category_name_slug``, єдиного аргументу, після обов'язкового аргументу ``request``.
 
 .. note:: Коли використовуються  URL-ли з параметрами, важливо гарантувати щоб параметри патерну URL співпадали з параметрами відповідного виду, що приймає ці параметри. Давайте розглянемо раніше наведений приклад.
-	
-	.. code-block:: python
-		
-		url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.category, name='category')
-	
-	Можна зробити висновок, що символи (як букви так і цифри) між ``category/`` і останнім ``/`` будуть передані до методу ``views.category()`` як іменований параметр ``category_name_slug``. Для прикладу, URL ``category/python-books/`` вийде якщо ``category_name_slug`` буде ``python-books``.
-	
-	Як ви маєте пам'ятати, всі функції виду, що визначені як частина проекту Django, *повинні* приймати принаймні один параметр. Зазвичай, його називають ``request`` - і він забезпечує доступ до інформації, пов'язаної з HTTP запитом, що зробив користувач. При параметризації URL-лів, додаються додаткові іменовані параметри. Якщо скористатися нашим прикладом, сигнатура виду ``category`` змінена так:
-	
-	.. code-block:: python
-		
-		def category(request, category_name_slug):
-		    # ... code here ...
-	
-	Неважлива позиція додаткового параметру, головне - його *ім'я* повинно співпадати з тим що є в патерні URL. Дивіться як ``category_name_slug`` визначена в URL-патерні узгоджується з параметром ``category_name_slug``, що визначений у виді. Використання ``category_name_slug`` у виді і дає  ``python-books``, або інше значення, передане як частина URL.
 
-.. note:: Спочатку, регулярні вирази можуть здатися жахливими і спантеличити, але є купа ресурсів онлайн щоб врятувати вас. `Ця шпаргалка <http://cheatography.com/davechild/cheat-sheets/regular-expressions/>`_ - чудовий ресурс у вирішенні питань з регулярних виразів.
+    .. code-block:: python
+
+        url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.category, name='category')
+
+    Можна зробити висновок, що символи (як букви так і цифри) між ``category/`` і останнім ``/`` будуть передані до методу ``views.category()`` як іменований параметр ``category_name_slug``. Для прикладу, URL ``category/python-books/`` вийде якщо ``category_name_slug`` буде ``python-books``.
+
+    Як ви маєте пам'ятати, всі функції виду, що визначені як частина проекту Django, *повинні* приймати принаймні один параметр. Зазвичай, його називають ``request`` - і він забезпечує доступ до інформації, пов'язаної з HTTP запитом, що зробив користувач. При параметризації URL-лів, додаються додаткові іменовані параметри. Якщо скористатися нашим прикладом, сигнатура виду ``category`` змінена так:
+
+    .. code-block:: python
+
+        def category(request, category_name_slug):
+            # ... code here ...
+
+    Неважлива позиція додаткового параметру, головне - його *ім'я* повинно співпадати з тим що є в патерні URL. Дивіться як ``category_name_slug`` визначена в URL-патерні узгоджується з параметром ``category_name_slug``, що визначений у виді. Використання ``category_name_slug`` у виді і дає  ``python-books``, або інше значення, передане як частина URL.
+
+.. note:: Спочатку, регулярні вирази можуть здатися жахливими і спантеличити, але є багато ресурсів онлайн щоб врятувати вас. `Ця шпаргалка <http://cheatography.com/davechild/cheat-sheets/regular-expressions/>`_ - чудовий ресурс у вирішенні питань з регулярних виразів.
 
 Змінюємо шаблон Index
 .....................
 Новий вид налаштований і готовий до використання - але потрібно зробити ще дещо. Шаблон index потребує оновлення щоб дати можливість користувачам переглядати збережені сторінки категорій. Додамо посилання на сторінку категорії за допомогою поля злиття:
 
 .. code-block:: html
-	
-	<!DOCTYPE html>
-	<html>
-	    <head>
-	        <title>Rango</title>
-	    </head>
 
-	    <body>
-	        <h1>Rango says..hello world!</h1>
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Rango</title>
+        </head>
 
-	        {% if categories %}
-	            <ul>
-	                {% for category in categories %}
-	                <!-- Following line changed to add an HTML hyperlink -->
-	                <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
-	                {% endfor %}
-	            </ul>
-	       {% else %}
-	            <strong>There are no categories present.</strong>
-	       {% endif %}
+        <body>
+            <h1>Rango says..hello world!</h1>
 
-	    </body>
-	</html>
+            {% if categories %}
+                <ul>
+                    {% for category in categories %}
+                    <!-- Following line changed to add an HTML hyperlink -->
+                    <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+           {% else %}
+                <strong>There are no categories present.</strong>
+           {% endif %}
 
-Ми додали HTML посилання (``<a>``) до кожного елементу списку (``<li>``). Посилання має атрибут  ``href``, котрий ми використовуємо щоб визначити потрібний URL за допомогою ``{{ category.slug }}``. 
+        </body>
+    </html>
+
+Ми додали HTML посилання (``<a>``) до кожного елементу списку (``<li>``). Посилання має атрибут  ``href``, котрий ми використовуємо щоб визначити потрібний URL за допомогою ``{{ category.slug }}``.
 
 Показ
 .....
-Нумо спробуємо все і відвідаємо домашню сторінку Rango. Ви повинні побачити перелік всіх категорій. Тепер категоріх повинні мати клікабельне посилання. Якщо клацнути на ``Python`` повинен відкритися деталізований вид категорії ``Python``, як показано на малюнку :num:`fig-rango-links`. Якщо ви бачите перелік посилань, на зразок ``Official Python Tutorial`` - ви успішно налаштували новий вид. Спробуйте перейти не неіснуючу категорію, наприклад ``/rango/category/computers``. Ви повинні побачити повідомлення, що для такої категорії нема сторінок.
+Нумо, спробуємо все і відвідаємо домашню сторінку Rango. Ви повинні побачити перелік всіх категорій. Тепер категорії повинні мати клікабельне посилання. Якщо клацнути на ``Python`` повинен відкритися деталізований вид категорії ``Python``, як показано на малюнку :num:`fig-rango-links`. Якщо ви бачите перелік посилань, на зразок ``Official Python Tutorial`` - ви успішно налаштували новий вид. Спробуйте перейти не неіснуючу категорію, наприклад ``/rango/category/computers``. Ви повинні побачити повідомлення, що для такої категорії нема сторінок.
 
 .. _fig-rango-links:
 
 .. figure:: ../images/rango-links.png
-	:figclass: align-center
+    :figclass: align-center
 
-	Тепер ваші посилання мають виглядати так. Після домашньої сторінки Rango ви переходите на сторінку подробиць категорії. Клацніть на посиланні, щоб перейти на веб-сайт.
+    Тепер ваші посилання мають виглядати так. Після домашньої сторінки Rango ви переходите на сторінку подробиць категорії. Клацніть на посиланні, щоб перейти на веб-сайт.
 
 Вправи
 ------

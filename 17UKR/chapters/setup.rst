@@ -11,20 +11,20 @@
 Почнемо з перевірки того, що Python та Django правильно встановлені і встановлені саме ті версії, котрі використовуються у посібнику. Щоб зробити це відкрийте термінал та виконайте наступну команду:
 
 ::
-	
-	$ python --version
-	2.7.5
 
-Ця команда запускає інтерпретатор Python з опцією для визначення версії програмного засобу. Якщо у вас буде не 2.7.5 - зверніться до розділу :ref:`installing-software` та перевірити чи все ви виконали відповідно до вашої операційної системи.
+    $ python --version
+    2.7.5
+
+Ця команда запускає інтерпретатор Python з опцією для визначення версії програмного засобу. Якщо у вас буде не 2.7.5 - зверніться до розділу :ref:`installing-software` та перевірте чи все ви виконали відповідно до вашої операційної системи.
 
 Після перевірки Python, перевірте Django за допомогою команди:
 
 ::
-	
-	$ python -c "import django; print(django.get_version())"
-	1.7
 
-Ця команда виконує код, що був переданий як частина опції ``-c``. Після імпортування Django, ви повинні побачити ``1.7``. Якщо надруковано інші цифрі або ``ImportError``, поверніться до розділу :ref:`installing-software` чи подивіться `Django Documentation on Installing Django <https://docs.djangoproject.com/en/1.7/topics/install/>`_ для отримання додаткової інформації. З іншою версією Django можливі проблеми при вивченні цього посібника. Варто переконатися ще раз, що встановлено саме версію Django 1.7. 
+    $ python -c "import django; print(django.get_version())"
+    1.7
+
+Ця команда виконує код, що був переданий як частина опції ``-c``. Після імпортування Django, ви повинні побачити ``1.7``. Якщо надруковано інші цифри або ``ImportError``, поверніться до розділу :ref:`installing-software` чи подивіться `Django Documentation on Installing Django <https://docs.djangoproject.com/en/1.7/topics/install/>`_ для отримання додаткової інформації. З іншою версією Django можливі проблеми при вивченні цього посібника. Варто переконатися ще раз, що встановлено саме версію Django 1.7.
 
 Створення проекту Django
 ------------------------
@@ -38,7 +38,7 @@
 
 Cтворена директорія повинна мати такий вміст:
 
-* іншу директорію, з такоюж назвою як ім’я проекту- ``tango_with_django_project``; 
+* іншу директорію, з такоюж назвою як ім’я проекту- ``tango_with_django_project``;
 * скрипт Python ``manage.py``.
 
 У цьому посібнику ми називаємо вкладену директорію- директорією конфігурації проекту. В ній ви знайдете скрипти Python. Ми детально розглянемо їх пізніше, але зараз ви повинні побачити:
@@ -61,51 +61,51 @@ Cтворена директорія повинна мати такий вміс
 Виконання цієї команди запускає полегшений веб-сервер Django для розробки. У вікні вашого терміналу відтвориться щось на зразок:
 
 ::
-	
-	$ python manage.py runserver
 
-	System check identified no issues (0 silenced).
+    $ python manage.py runserver
 
-	You have unapplied migrations; your app may not work properly until they are applied.
-	Run 'python manage.py migrate' to apply them.
+    System check identified no issues (0 silenced).
 
-	October 01, 2014 - 19:49:05
-	Django version 1.7c2, using settings 'tango_with_django_project.settings'
-	Starting development server at http://127.0.0.1:8000/
-	Quit the server with CONTROL-C.
-	
-	
-	
+    You have unapplied migrations; your app may not work properly until they are applied.
+    Run 'python manage.py migrate' to apply them.
+
+    October 01, 2014 - 19:49:05
+    Django version 1.7c2, using settings 'tango_with_django_project.settings'
+    Starting development server at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+
+
+
 ::
 
-	$ python manage.py migrate
-	
-	Operations to perform:
-	  Apply all migrations: admin, contenttypes, auth, sessions
-	Running migrations:
-	  Applying contenttypes.0001_initial... OK
-	  Applying auth.0001_initial... OK
-	  Applying admin.0001_initial... OK
-	  Applying sessions.0001_initial... OK
-	
-	
-#TODO(leifos): add description of migrate command: from django tutorial: Команда міграції шукає параметр INSTALLED_APPS (встановлені додатки) в файлі проекту settings.py і створює необхідні таблиці бази даних згідно налаштувань кожного додатку (детальніше буде розглянуто пізніше). Ви побачите повідомлення для кожної міграції що застосовується. Якщо вам цікаво- запустіть клієнт командного рядку для вашої бази даних та введіть dt (для PostgreSQL), SHOW TABLES; (MySQL), або .schema (SQLite) для перегляду створених таблиць.	
-	
+    $ python manage.py migrate
 
-Тепер відкрийте ваш улюблений веб-переглядач та перейдіть за адресою http://127.0.0.1:8000/ [#f1]_. Ви повинні побачити сторінку як на малюнку :num:`fig-django-dev-server-firstrun`: 
+    Operations to perform:
+      Apply all migrations: admin, contenttypes, auth, sessions
+    Running migrations:
+      Applying contenttypes.0001_initial... OK
+      Applying auth.0001_initial... OK
+      Applying admin.0001_initial... OK
+      Applying sessions.0001_initial... OK
+
+
+#TODO(leifos): add description of migrate command: from django tutorial: Команда міграції шукає параметр INSTALLED_APPS (встановлені додатки) в файлі проекту settings.py і створює необхідні таблиці бази даних згідно налаштувань кожного додатку (детальніше буде розглянуто пізніше). Ви побачите повідомлення для кожної міграції що застосовується. Якщо вам цікаво- запустіть клієнт командного рядку для вашої бази даних та введіть dt (для PostgreSQL), SHOW TABLES; (MySQL), або .schema (SQLite) для перегляду створених таблиць.
+
+
+Тепер відкрийте ваш улюблений веб-переглядач та перейдіть за адресою http://127.0.0.1:8000/ [#f1]_. Ви повинні побачити сторінку як на малюнку :num:`fig-django-dev-server-firstrun`:
 
 .. _fig-django-dev-server-firstrun:
 
 .. figure:: ../images/django-dev-server-firstrun.png
-	:figclass: align-center
-	
-	Початкова сторінка Django, що виводиться коли сервер розробки запускається вперше.
+    :figclass: align-center
+
+    Початкова сторінка Django, що виводиться коли сервер розробки запускається вперше.
 
 Ви можете зупинити сервер розробки в будь-який час, натиснувши ``CTRL + C`` у вікні терміналу. Якщо ви хочете запустити сервер розробки на іншому порту, або надати доступ користувачам з інших машин, ви можете зробити це шляхом подачі додаткових аргументів. Розглянемо наступну команду:
 
 ``$ python manage.py runserver <your_machines_ip_address>:5555``
 
-Виконання цієї команди змусить сервер розробки реагувати на вхідні запити на TCP порту 5555. Вам потрібно буде замінити ``<your_machines_ip_address>`` на IP-адресу вашого комп'ютера. 
+Виконання цієї команди змусить сервер розробки реагувати на вхідні запити на TCP порту 5555. Вам потрібно буде замінити ``<your_machines_ip_address>`` на IP-адресу вашого комп'ютера.
 
 При установці портів, малоймовірно, що ви зможете використовувати TCP-порт 80, який традиційно зарезервований для HTTP-трафіку. Крім того, будь-який порт нижче 1024 вважається привілейованим і не повинен використовуватися звичайним користувачем (`privileged <http://www.w3.org/Daemon/User/Installation/PrivilegedPorts.html>`_).
 
@@ -117,21 +117,21 @@ Cтворена директорія повинна мати такий вміс
 
 Створення додатку Django
 ------------------------
-Проект Django це збірка *конфігурацій* та *додатків*, що разом утворюють веб-додаток або сайт. Одним з передбачуваних результатів цього підходу є заохочення використання кращих методів розробки програмного забезпечення. Розвиваючи невелику серію додатків, ідея полягає в тому, що теоретично можна видалити існуючий додаток в інший проект Django і це працює з мінімальними зусиллями. Навіщо винаходити велосипед, якщо він вже є?[#f2]_
+Проект Django це збірка *конфігурацій* та *додатків*, що разом утворюють веб-додаток або сайт. Одним з передбачуваних результатів цього підходу є заохочення використання кращих методів розробки програмного забезпечення. Розвиваючи невелику серію додатків, ідея полягає в тому, що теоретично можна вилучити існуючий додаток в інший проект Django і це працює з мінімальними зусиллями. Навіщо винаходити велосипед, якщо він вже є?[#f2]_
 
 Кожен Django додаток існує для виконання окремої задачі. Потрібно створювати специфічні додатки, котрі додають вашому сайту певної функціональності. Наприклад, ми можемо уявити проект, що складається з декількох додатків, включаючи додатки для голосування, реєстрації, та зміст до відповідних додатків. В іншому проекті, нам потрібно ще раз використати додатки для голосування та реєстрації, і використати їх з іншим змістом. Є багато Django додатків для `завантаження <https://code.djangoproject.com/wiki/DjangoResources#Djangoapplicationcomponents>`_ і використання в ваших проектах. Оскільки ми початківці, почнемо зі створення свого власного додатку.
 
 Для початку, створіть новий додаток на ім'я *Rango*. З каталогу проекту Django (наприклад ``<workspace>/tango_with_django_project``), виконайте таку команду:
 
 ::
-	
-	$ python manage.py startapp rango
+
+    $ python manage.py startapp rango
 
 Команда ``startapp`` створює новий каталог у корені каталогу проекту. Як не дивно, цей каталог називається ``rango`` - і містить п'ять скриптів Python:
 
 - ще один ``__init__.py``, з тим же призначенням, що ми розглянули раніше;
 - models.py, місце для зберігання моделей даних додатку - де ви визначите сутності та зв'язки;
-- tests.py, для зберігання функцій тестування коду вашого додатку; 
+- tests.py, для зберігання функцій тестування коду вашого додатку;
 - views.py, для зберігання функцій відповідальних за обробку клієнтських запитів(request) та повернення відгуків (response).
 - admin.py, де треба зареєструвати потрібну модель даних, щоб Django автоматично створив адміністративний інтерфейс до неї (see #TODO(leifos):add link to admin chapter)
 
@@ -142,17 +142,17 @@ Cтворена директорія повинна мати такий вміс
 
 .. code-block:: python
 
-	INSTALLED_APPS = (
-	    'django.contrib.admin',
-	    'django.contrib.auth',
-	    'django.contrib.contenttypes',
-	    'django.contrib.sessions',
-	    'django.contrib.messages',
-	    'django.contrib.staticfiles',
-	    'rango',
-	)
+    INSTALLED_APPS = (
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'rango',
+    )
 
-Перевірте, що Django підхопив новий додаток запустивши знову сервер розробки. Якщо не виникне помилок - ваш додаток підххоплено і ви готові до наступного кроку.
+Перевірте, що Django підхопив новий додаток запустивши знову сервер розробки. Якщо не виникне помилок - ваш додаток підхоплено і ви готові до наступного кроку.
 
 Створення виду
 --------------
@@ -164,10 +164,10 @@ Cтворена директорія повинна мати такий вміс
 
 .. code-block:: python
 
-	from django.http import HttpResponse
-	
-	def index(request):
-	    return HttpResponse("Rango says hey there world!")
+    from django.http import HttpResponse
+
+    def index(request):
+        return HttpResponse("Rango says hey there world!")
 
 Розбираючи ці три рядки коду, ми з'ясуємо як створено цей простий вид.
 
@@ -184,11 +184,11 @@ Cтворена директорія повинна мати такий вміс
 
 .. code-block:: python
 
-	from django.conf.urls import patterns, url
-	from rango import views
+    from django.conf.urls import patterns, url
+    from rango import views
 
-	urlpatterns = patterns('',
-		url(r'^$', views.index, name='index'))
+    urlpatterns = patterns('',
+        url(r'^$', views.index, name='index'))
 
 Цей код імпортує необхідні механізми Django для створення URL відображень. Імпорт модуля ``views`` з додатку ``rango`` дає нам доступ до виду, що ми створили раніше.
 
@@ -205,16 +205,16 @@ Cтворена директорія повинна мати такий вміс
 Як це зробити? Зовсім просто. Відкрийте файл ``urls.py`` з теки конфігурації проекту. Шлях о цього файлу, відносно каталогу робочого простору, повинен бути таким: ``<workspace>/tango_with_django_project/tango_with_django_project/urls.py``. Змініть кортеж ``urlpatterns`` як наведено нижче:
 
 .. code-block:: python
-	
 
-	urlpatterns = patterns('',
-	    # Examples:
-	    # url(r'^$', 'tango_with_django_project_17.views.home', name='home'),
-	    # url(r'^blog/', include('blog.urls')),
 
-	    url(r'^admin/', include(admin.site.urls)),
-	    url(r'^rango/', include('rango.urls')), # ДОДАЙТЕ ЦЕЙ НОВИЙ КОРТЕЖ!
-	)
+    urlpatterns = patterns('',
+        # Examples:
+        # url(r'^$', 'tango_with_django_project_17.views.home', name='home'),
+        # url(r'^blog/', include('blog.urls')),
+
+        url(r'^admin/', include(admin.site.urls)),
+        url(r'^rango/', include('rango.urls')), # ДОДАЙТЕ ЦЕЙ НОВИЙ КОРТЕЖ!
+    )
 
 Додане відображення співпадає з рядками url що відповідають патерну ``^rango/``. Коли співпадання зроблено залишок рядку url передається на обробку до ``rango.urls`` (котрий ми вже налаштували). Це зроблено за допомогою функції ``include()`` з модулю ``django.conf.urls``. Розглядайте це як ланцюжок, що обробляє рядок URL - так як показано на малюнку :num:`fig-url-chain`. В цьому ланцюжку домен вилучається і залишок рядка url (``rango/``) передається до проекту tango_with_django де знаходиться і видаляється ``rango/`` , а залишок, пустий рядок, передається до додатку rango. Rango шукає співпадіння з пустим рядком, знаходить, і викликає вид ``index()``, що ми створили.
 
@@ -223,16 +223,16 @@ Cтворена директорія повинна мати такий вміс
 .. _fig-url-chain:
 
 .. figure:: ../images/url-chain.svg
-	:figclass: align-center
-	
-	Ілюстрація URL, що показує як за різні частини URL відповідають різні файли ``url.py``.
+    :figclass: align-center
+
+    Ілюстрація URL, що показує як за різні частини URL відповідають різні файли ``url.py``.
 
 .. _fig-rango-hello-world:
 
 .. figure:: ../images/rango-hello-world.png
-	:figclass: align-center
+    :figclass: align-center
 
-	Скрін Google Chrome показує нашу першу сторінку на Django. Привіт, Rango!
+    Скрін Google Chrome показує нашу першу сторінку на Django. Привіт, Rango!
 
 Для кожного додатку ви будете створювати певну кількість відображень URL-вид. Наше перше відображення зовсім просте. У міру просування, ми будемо створювати більш складні відображення URL-ів з параметрами.
 
@@ -265,7 +265,7 @@ Cтворена директорія повинна мати такий вміс
 * Відобразте цей вид на ``/rango/about/``. Для цього треба виправити ``urls.py`` додатку rango.
 * Змініть ``HttpResponse`` в виді ``index`` щоб додати посилання на сторінку "about".
 * В ``HttpResponse`` виду ``about`` додайте посилання назад, на головну сторінку.
-* Якщо ви досі цього не зробили, зараз саме час опрацювати першу частину офіційного `Посібника з Django <https://docs.djangoproject.com/en/1.7/intro/tutorial01/>`_. 
+* Якщо ви досі цього не зробили, зараз саме час опрацювати першу частину офіційного `Посібника з Django <https://docs.djangoproject.com/en/1.7/intro/tutorial01/>`_.
 
 Натяки
 ......

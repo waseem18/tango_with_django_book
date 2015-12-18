@@ -2,7 +2,7 @@
 
 Шаблони та статичне медіа
 =========================
-В цьому розділі ми будемо розширювати знання Django знайомлячись з рушієм шаблонів, а також, як поводитися з *статичним медіа* на ваших веб-сторінках. 
+В цьому розділі ми будемо розширювати знання Django знайомлячись з рушієм шаблонів, а також, як поводитися з *статичним медіа* на ваших веб-сторінках.
 
 .. _model-setup-templates-label:
 
@@ -14,53 +14,53 @@
 
 Конфігурування каталогу шаблонів
 ................................
-Щоб користуватися шаблонами потрібно налаштувати каталог де ці шаблони будуть зберігатися. 
+Щоб користуватися шаблонами потрібно налаштувати каталог де ці шаблони будуть зберігатися.
 
-У теці проекту Django (наприклад ``<workspace>/tango_with_django_project/``), створіть новий каталог на ім'я  ``templates``. В ньому ж (в новоствореному каталозі) створіть каталог ``rango``. Таким чином, каталог ``<workspace>/tango_with_django_project/templates/rango/`` буде місцем зберігання шаблонів додатку ``rango``. 
+У теці проекту Django (наприклад ``<workspace>/tango_with_django_project/``), створіть новий каталог на ім'я  ``templates``. В ньому ж (в новоствореному каталозі) створіть каталог ``rango``. Таким чином, каталог ``<workspace>/tango_with_django_project/templates/rango/`` буде місцем зберігання шаблонів додатку ``rango``.
 
 Щоб налаштувати проект Django де знаходяться шаблони відкрийте файл проекту ``settings.py``. Додайте кортеж ``TEMPLATE_DIRS`` до ``settings.py`` і вкажіть шлях до новоствореного каталогу ``templates``, так, як показано нижче:
 
 .. code-block:: python
-	
-	
-	TEMPLATE_DIRS = ('<workspace>/tango_with_django_project/',)
+
+
+    TEMPLATE_DIRS = ('<workspace>/tango_with_django_project/',)
 
 Зауваже, що *потрібен абсолютний шлях* до каталогу ``templates``. Якщо ви працюєте в команді, або на різних комп'ютерах це може стати проблемою в майбутнєму. Ви будете мати різні імена, що означає різні шляхи до вашого каталогу ``<workspace>``. *Жорстко закодовані* шляхи, що наведені вище, не одне й те саме на різних комп'ютерах. Звичайно, ви можете виправляти каталог шаблонів для кожної окремої установки, але це був би досить огидний спосіб вирішення проблеми. Отже, що ми можемо зробити?
 
 .. warning::
-	Дорога до пекла встелена жорстко закодованими шляхами. 
- 	`Жорстко закодовані <http://en.wikipedia.org/wiki/Hard_coding>`_ шляхи вважаються `програмним антипатерном <http://sourcemaking.com/antipatterns>`_ та роблять ваш проект менш `переносним <http://en.wikipedia.org/wiki/Software_portability>`_.
+    Дорога до пекла встелена жорстко закодованими шляхами.
+    `Жорстко закодовані <http://en.wikipedia.org/wiki/Hard_coding>`_ шляхи вважаються `програмним антипатерном <http://sourcemaking.com/antipatterns>`_ та роблять ваш проект менш `переносним <http://en.wikipedia.org/wiki/Software_portability>`_.
 
 Динамічні шляхи
 ...............
-Вирішення проблеми жорсткого кодування шляхів полягає у використанні вбудованих функцій Python для автоматизації роботи зі шляхом до каталогу ``templates``. У такий спосіб абсолютний шлях може бути отриманий незалежно від розташування проекту Django  файловій системі. Це, в свою чергу, означає що код вашого проекту робиться більш *переносним.* 
+Вирішення проблеми жорсткого кодування шляхів полягає у використанні вбудованих функцій Python для автоматизації роботи зі шляхом до каталогу ``templates``. У такий спосіб абсолютний шлях може бути отриманий незалежно від розташування проекту Django  файловій системі. Це, в свою чергу, означає що код вашого проекту робиться більш *переносним.*
 
 В Django 1.7 файл ``settings.py``  тепер має змінну ``BASE_DIR``. В ній зберігається шлях до каталогу в котрому міститься файл проекту ``settings.py``. Знаення отримано за допомогою спеціального атрибуту Python ``__file__`` котрий `встановлюється рівним абсолютному шляху до вашого модуля <http://stackoverflow.com/a/9271479>`_.  Якщо ``__file__`` абсолютний шлях до файла налаштувань, тоді виклик ``os.path.dirname()`` абсолютний шлях до каталогу. Повторний виклик ``os.path.dirname()`` видалить ще один шар, так щоб  ``BASE_DIR`` містила ``<workspace>/tango_with_django_project/``. Переглянте цей процес у дії, якщо цікаво, додавши такі рядки:
 
 .. code-block:: python
-	
-	print __file__
-	print os.path.dirname(__file__)
-	print os.path.dirname(os.path.dirname(__file__))
-	
+
+    print __file__
+    print os.path.dirname(__file__)
+    print os.path.dirname(os.path.dirname(__file__))
+
 
 
 Давайте скористуємось цим зараз. Створіть нову змінну в ``settings.py`` на ім'я ``TEMPLATE_PATH`` та збережіть в ній шлях до каталогу ``templates``. З використанням функції ``os.path.join()`` ваш код має виглядати як в наведеному нижче прикладі:
 
 .. code-block:: python
-	
-	TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+
+    TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 
 Ми скористалися ``os.path.join()`` для поєднання змінної ``BASE_DIR`` та  ``'templates'`` і отримання в результаті, наприклад ``<workspace>/tango_with_django_project/templates/``. Тепер ми можемо замінити жорстко закодований шлях в ``TEMPLATE_DIRS`` на ``TEMPLATE_PATH``:
 
 .. code-block:: python
-	
-	TEMPLATE_DIRS = (
-	    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-	    # Always use forward slashes, even on Windows.
-	    # Don't forget to use absolute paths, not relative paths.
-	    TEMPLATE_PATH,
-	)
+
+    TEMPLATE_DIRS = (
+        # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+        # Always use forward slashes, even on Windows.
+        # Don't forget to use absolute paths, not relative paths.
+        TEMPLATE_PATH,
+    )
 
 Ми можемо тримати змінну ``TEMPLATE_PATH`` з початку файлу ``settings.py`` для зручного доступу, якщо її треба буде змінити. Для цього ми і зробили додаткову змінну.
 
@@ -76,21 +76,21 @@
 Створіть файл ``index.html`` і розмістіть його в каталозі ``templates/rango/``. Додайте в нього такий код HTML:
 
 .. code-block:: html
-	
-	<!DOCTYPE html>
-	<html>
-	
-	    <head>
-	        <title>Rango</title>
-	    </head>
-	    
-	    <body>
-	        <h1>Rango says...</h1>
-	        hello world! <strong>{{ boldmessage }}</strong><br />
-	        <a href="/rango/about/">About</a><br />
-	    </body>
-	
-	</html>
+
+    <!DOCTYPE html>
+    <html>
+
+        <head>
+            <title>Rango</title>
+        </head>
+
+        <body>
+            <h1>Rango says...</h1>
+            hello world! <strong>{{ boldmessage }}</strong><br />
+            <a href="/rango/about/">About</a><br />
+        </body>
+
+    </html>
 
 З коду зрозуміло, що це проста HTML сторінка буде виводити привітання *hello world*. Зверніть увагу на не-HTML код у вигляді ``{{ boldmessage }}``. Це *змінна шаблону Django* і ми можемо встановити її значення для відображення. Що ми зараз і зробимо.
 
@@ -99,31 +99,31 @@
 В ``rango/views.py`` додайте імпорт:
 
 .. code-block:: python
-	
-	from django.shortcuts import render
+
+    from django.shortcuts import render
 
 Тепер змініть функцію ``index()`` як показано. Прочитайте коментарі, щод дізнатися що робить кожен рядок коду.
 
 .. code-block:: python
-	
-	def index(request):
-	     
-	    # Створимо словник для передачі контексту в рушій шаблону.
-	    # Зауважте- ключ boldmessage такий самий як {{ boldmessage }} в шаблоні!
-	    context_dict = {'boldmessage': "I am bold font from the context"}
-	    
-	    # Повертаємо опрацьовану відповідь для відправки клієнту.
-	    # Ми скористалися допоміжною функцією для полегшення життя.
-	    # Увага, другий параметр- це ім'я шаблону котрий ми хочемо використати.
-		
-	    return render(request, 'rango/index.html', context_dict)
+
+    def index(request):
+
+        # Створимо словник для передачі контексту в рушій шаблону.
+        # Зауважте- ключ boldmessage такий самий як {{ boldmessage }} в шаблоні!
+        context_dict = {'boldmessage': "I am bold font from the context"}
+
+        # Повертаємо опрацьовану відповідь для відправки клієнту.
+        # Ми скористалися допоміжною функцією для полегшення життя.
+        # Увага, другий параметр- це ім'я шаблону котрий ми хочемо використати.
+
+        return render(request, 'rango/index.html', context_dict)
 
 
 Сочатку ми створили словник пар ключ-значення для використання з шаблоном, потім викликали допоміжну функцію ``render()``. Ця фунція приймає запит користувача ``request``, ім'я файлу шаблону та словник контексту. Функція ``render()`` приймає ці дані та об'єднує з шаблоном для отримання HTML сторінки. Потім ця сторінка повертається до веб-переглядача користувача.
 
 Коли файл шаблону завантажується у систему шаблонів Django створюється *контекст шаблону*. Контекст шаблону це , по суті, словник Python що відображає змінні шаблону на змінні Python. У створений раніше шаблон ми додали змінну ``boldmessage``. А в ``index(request)`` рядок ``I am bold font from the context`` відображається на змінну ``boldmessage``. Таким чином, рядок ``I am bold font from the context`` замінює у шаблоні будь-який зразок  ``{{ boldmessage }}``.
 
-Тепер, коли ви оновили вид для застосування шаблону, запустіть сервер розробки Django і відвідайте http://127.0.0.1:8000/rango/. Ви побачите ваш шаблон у всій красі, так, як показано на малюнку :num:`fig-rango-hello-world-template`. 
+Тепер, коли ви оновили вид для застосування шаблону, запустіть сервер розробки Django і відвідайте http://127.0.0.1:8000/rango/. Ви побачите ваш шаблон у всій красі, так, як показано на малюнку :num:`fig-rango-hello-world-template`.
 
 Якщо ні, прочитайте повідомлення про помилку щоб з'ясувати в чому проблема, а потім двічі перевірте всі зміни що були зроблені вами. Впевніться що було зроблено все потрібне. Найбільш розповсюджена помилка з неправильним шляхом до шаблонів в ``settings.py``. Іноді варто додати команду ``print`` до ``settings.py`` і перевірити значення ``BASE_DIR`` та ``TEMPLATE_PATH``.
 
@@ -132,13 +132,13 @@
 .. _fig-rango-hello-world-template:
 
 .. figure:: ../images/rango-hello-world-template.png
-	:figclass: align-center
+    :figclass: align-center
 
-	Копія екрана з Google Chrome що відмальовує шаблон з посібника.
+    Копія екрана з Google Chrome що відмальовує шаблон з посібника.
 
 Роботи зі статичним медіа
 -------------------------
-Якщо відверто, веб-сайт *Rango* доволі плаский, не використано ні стилів ні зображень.  `Cascading Style Sheets (CSS) <http://en.wikipedia.org/wiki/Cascading_Style_Sheets>`_, `JavaScript <https://en.wikipedia.org/wiki/JavaScript>`_ і малюнки це *статичне медіа*, файли котрі ми можемо включити до нашого веб-сайту, додати стиль та запровадити динамічну поведінку. З такими файлами працюють трохи у інший спосіб ніж зі звичайними веб-сторінками. Вони не генеруються льоту як наші HTML сторінки. У цьому розділі показано, як налаштувати ваш проект Django для обслуговування статичних медіа для клієнта. Ми також модифікували шаблон, щоб включити деякі приклади статичних медіа.
+Якщо відверто, веб-сайт *Rango* доволі плаский, не використано ні стилів ні зображень.  `Cascading Style Sheets (CSS) <http://en.wikipedia.org/wiki/Cascading_Style_Sheets>`_, `JavaScript <https://en.wikipedia.org/wiki/JavaScript>`_ і малюнки це *статичне медіа*, файли котрі ми можемо включити до нашого веб-сайту, додати стиль та запровадити динамічну поведінку. З такими файлами працюють трохи у інший спосіб ніж зі звичайними веб-сторінками. Вони не генеруються на льоту як наші HTML сторінки. У цьому розділі показано, як налаштувати ваш проект Django для обслуговування статичних медіа для клієнта. Ми також модифікували шаблон, щоб включити деякі приклади статичних медіа.
 
 Налаштування каталогу статичних медіа
 .....................................
@@ -149,23 +149,23 @@
 .. _fig-rango-picture:
 
 .. figure:: ../images/rango-picture.png
-	:figclass: align-center
+    :figclass: align-center
 
-	Хамелеон Rango з теки статичного медіа.
+    Хамелеон Rango з теки статичного медіа.
 
 Ми маємо теку ``static``, але про це потрібно розповісти Django так само як ми зробили з текою ``templates`` раніш. До файлу ``settings.py`` потрібно додати дві змінні:  ``STATIC_URL`` та кортеж ``STATICFILES_DIRS``, так як показано нижче:
 
 .. code-block:: python
-	
-	STATIC_PATH = os.path.join(BASE_DIR,'static')
 
-	STATIC_URL = '/static/' # You may find this is already defined as such.
-	
-	STATICFILES_DIRS = (
-	    STATIC_PATH,
-	)
+    STATIC_PATH = os.path.join(BASE_DIR,'static')
 
-Ви ввели трохи коду, але що він робить? Перша змінна ``STATIC_URL`` втановлює базовий URL відносно котрого ваш додаток Django буде шукати файли статичного медіа коли запущено сервер. Наприклад, коли запущено сервер розробки Django зі ``STATIC_URL`` втановленим рівним ``/static/``, як в наведеному вище коді, статичне медіа буде доступне за адресою ``http://127.0.0.1:8000/static/``.  `Офіційна документація по роботі зі статичним медіа <https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-STATIC_URL>`_ попереджає, що життєво важливо щоб були саме такі слеші.
+    STATIC_URL = '/static/' # You may find this is already defined as such.
+
+    STATICFILES_DIRS = (
+        STATIC_PATH,
+    )
+
+Ви ввели трохи коду, але що він робить? Перша змінна ``STATIC_URL`` втановлює базовий URL відносно котрого ваш додаток Django буде шукати файли статичного медіа коли запущено сервер. Наприклад, коли запущено сервер розробки Django зі ``STATIC_URL`` втановленим рівним ``/static/``, як в наведеному вище коді, статичне медіа буде доступне за адресою ``http://127.0.0.1:8000/static/``.  `Офіційна документація по роботі зі статичним медіа <https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-STATIC_URL>`_ попереджає, що важливо щоб були саме такі слеші.
 
 В той час як ``STATIC_URL`` визначає URL для доступу до медіа через веб-сервер, ``STATICFILES_DIRS`` дає можливість встановити розміщення новоствореної теки ``static`` на локальному диску. Як і кортеж ``TEMPLATE_DIRS``, ``STATICFILES_DIRS`` потребує абсолютного шляху до теки ``static``. Тут ми знову скористаємося ``BASE_DIR`` щоб створити ``STATIC_PATH``.
 
@@ -181,30 +181,30 @@
 
 .. code-block:: html
 
-	<!DOCTYPE html>
-	
-	{% load staticfiles %} <!-- New line -->
-	
-	<html>
-	
-	    <head>
-	        <title>Rango</title>
-	    </head>
-	    
-	    <body>
-	        <h1>Rango says...</h1>
-	        hello world! <strong>{{ boldmessage }}</strong><br />
-	        <a href="/rango/about/">About</a><br />
-	        <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" /> <!-- New line -->
-	    </body>
-	
-	</html>
+    <!DOCTYPE html>
+
+    {% load staticfiles %} <!-- New line -->
+
+    <html>
+
+        <head>
+            <title>Rango</title>
+        </head>
+
+        <body>
+            <h1>Rango says...</h1>
+            hello world! <strong>{{ boldmessage }}</strong><br />
+            <a href="/rango/about/">About</a><br />
+            <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" /> <!-- New line -->
+        </body>
+
+    </html>
 
 Поперше, потрібно, за допомогою тегу ``{% load static %}``, повідомити систему шаблонів Django що ми збираємося використовувати статичне медіа. Це дає можливість викликати тег шаблонів ``static``, як зроблено в ``{% static "rango.jpg" %}``. Як ви можете побачити, теги шаблонів Django позначають фігурними дужками ``{ }``. В цьому прикладі, тег ``static`` поєднує ``STATIC_URL`` з ``"rango.jpg"``, так, що в результаті буде отримано наведний нижче код HTML.
 
 .. code-block:: html
 
-	<img src="/static/images/rango.jpg" alt="Picture of Rango" /> <!-- New line -->
+    <img src="/static/images/rango.jpg" alt="Picture of Rango" /> <!-- New line -->
 
 Якщо, чомусь, зображення не може бути завантажено, завжди добре вказувати альтернативний текст. Саме для цього й призначено атрибут ``alt`` - вказаний в ньому текст використовується якщо є проблеми завантаження зображення.
 
@@ -213,32 +213,32 @@
 .. _fig-rango-site-with-pic:
 
 .. figure:: ../images/rango-site-with-pic.png
-	:figclass: align-center
+    :figclass: align-center
 
-	Наш перший шаблон Rango з зображенням хамелеона Rango.
+    Наш перший шаблон Rango з зображенням хамелеона Rango.
 
 Використовуйте функцію ``{% static %}`` для посилань на статичне медіа в шаблонах. Далі наведено приклад для JavaScript, CSS та зображень в шаблонах - всі з коректною HTML розміткою.
 
 .. code-block:: html
-	
-	<!DOCTYPE html>
-	
-	{% load static %}
-	
-	<html>
-	
-	    <head>
-	        <title>Rango</title>
-	        <link rel="stylesheet" href="{% static "css/base.css" %}" /> <!-- CSS -->
-	        <script src="{% static "js/jquery.js" %}"></script> <!-- JavaScript -->
-	    </head>
-	    
-	    <body>
-	        <h1>Including Static Media</h1>
-	        <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" /> <!-- Images -->
-	    </body>
-	
-	</html>
+
+    <!DOCTYPE html>
+
+    {% load static %}
+
+    <html>
+
+        <head>
+            <title>Rango</title>
+            <link rel="stylesheet" href="{% static "css/base.css" %}" /> <!-- CSS -->
+            <script src="{% static "js/jquery.js" %}"></script> <!-- JavaScript -->
+        </head>
+
+        <body>
+            <h1>Including Static Media</h1>
+            <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" /> <!-- Images -->
+        </body>
+
+    </html>
 
 Зрозуміло, що статичні файли повинні бути в каталозі ``static``. Якщо файл відсутній, або є помилка у посиланні, консоль сервера розробки Django видає відповідне повідомлення про помилку. Спробуйте зробити посилання на відсутній файл і подивіться що трапиться.
 
@@ -254,12 +254,12 @@
 .. code-block:: python
 
 
-	from django.conf import settings # New Import
-	from django.conf.urls.static import static # New Import
+    from django.conf import settings # New Import
+    from django.conf.urls.static import static # New Import
 
 
-	if not settings.DEBUG:
-		urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    if not settings.DEBUG:
+        urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 #TODO(leifos): Можливо ми опишемо все це в розділі про розгортання... ймовірно це більш доцільно
@@ -272,26 +272,26 @@
 Отож, як ми будемо налаштовувати медіа сервер розробки? Перший крок це - створити нову теку на ім'я ``media`` в корені проекту Django (наприклад ``<workspace>/tango_with_django_project/``). Нова тека ``media`` повинна бути поруч з теками ``templates`` та ``static``. Після створення теки потрібно змінити  файл ``urls.py`` проекту Django, що знаходиться у теці конфігурації проекту (наприклад ``<workspace>/tango_with_django_project/tango_with_django_project/``). Додайте такий код до файлу ``urls.py``:
 
 .. code-block:: python
-	
-	# На початку файлу urls.py, додайте рядок:
-	from django.conf import settings
-	
-	# ПІСЛЯ визначення патернів  url (urlpattern), додайте:
-	if settings.DEBUG:
-	    urlpatterns += patterns(
-	        'django.views.static',
-	        (r'^media/(?P<path>.*)',
-	        'serve',
-	        {'document_root': settings.MEDIA_ROOT}), )
+
+    # На початку файлу urls.py, додайте рядок:
+    from django.conf import settings
+
+    # ПІСЛЯ визначення патернів  url (urlpattern), додайте:
+    if settings.DEBUG:
+        urlpatterns += patterns(
+            'django.views.static',
+            (r'^media/(?P<path>.*)',
+            'serve',
+            {'document_root': settings.MEDIA_ROOT}), )
 
 Модуль ``settings`` з ``django.conf`` надає доступ до змінних що визначені у файлі проекту ``settings.py``. Твердження умови перевіряє чи запущено проект Django у спосіб `ЗНЕВАДЖЕННЯ <https://docs.djangoproject.com/en/1.7/ref/settings/#debug>`_ . Якщо ``DEBUG`` проекту встановлено в ``True``, тоді до кортежу ``urlpatterns`` додаються додаткові URL патерни. Шаблони налаштовані так, що кожен запит що починається з ``media/`` буде передано до виду ``django.views.static``. Цей вид підтримує обробку завантажених медіа-файлів.
 
 Після файлу``urls.py`` також потрібно внести зміни до файлу налаштувань проекту ``settings.py``. Потрібно встановити значення двох змінних. Додайте ``MEDIA_URL`` і ``MEDIA_ROOT`` та встановіть їх значення як показано далі.
 
 .. code-block:: python
-	
-	MEDIA_URL = '/media/'
-	MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
+
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
 
 Перша змінна ``MEDIA_URL`` встановлює базовий URL від котрого всі медіа-файли будоть досяжнні на вашому сервері розробки. Встановивши значення ``MEDIA_URL``, наприклад, у ``/media/`` призведе до того, що файли користувача будуть доступні за URL адресою ``http://127.0.0.1:8000/media/``. ``MEDIA_ROOT`` використовується щоб повідомити Django де на вашому локальному диску повинні зберігатися завантажені файли. В наведеному прикладі ми встановлюєму цю змінну рівеою результату об'єднання змінної ``PROJECT_PATH``, котру ми визначили у розділі :ref:`model-setup-templates-label`, та  ``/media/``. Це дає нам абсолютний шлях ``<workspace>/tango_with_django_project/media/``.
 
@@ -317,7 +317,7 @@
 Кроки необхідні для показу файлів статичного медіа на ваших сторінках - це ще один важливий процес який потрібно добре знати. Етапи необхідні для цього - переглянте нижче.
 
 #. Візміть потрібний файл та розмістіть його в теці ``static`` вашого проекту. Цей каталог ви визначили в кортежі ``STATICFILES_DIRS`` файлу ``settings.py``.
-#. У шаблоні додайте посилання на статичне медіа. Наприклад, зображення може бути вставлене в HTML сторінку з використанням тегу ``<img />``. 
+#. У шаблоні додайте посилання на статичне медіа. Наприклад, зображення може бути вставлене в HTML сторінку з використанням тегу ``<img />``.
 #. Не забувайте використовувати ``{% load staticfiles %}`` та ``{% static "filename" %}`` в шаблонах для доступу до статичних файлів.
 
 В наступному розділі розгядається база даних. Ми побачимо як користуватися чудовими інструментами баз даних Django щоб зробити життя легшим та вільним від SQL!
