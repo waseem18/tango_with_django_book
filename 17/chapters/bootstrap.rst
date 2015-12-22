@@ -100,7 +100,7 @@ The New Base Template
 	</html>
 
 
-If you take a close look at the dashboard html source, you'll notice it has a lot of structure in it created by a series of ``<div>`` tags. Essentially the page is broken into two parts - the top navigation bar and the main pane which are denoted by the two ``<div class="container-fluid">``s. In the nav bar section, we have injected all the links to the different parts of our website. Inside the main pane, there are two columns, one for the ``side_block``, and the other for the ``body_block``.
+If you take a close look at the dashboard html source, you'll notice it has a lot of structure in it created by a series of ``<div>`` tags. Essentially the page is broken into two parts - the top navigation bar and the main pane which are denoted by the two ``<div class="container-fluid">`` tags. In the nav bar section, we have injected all the links to the different parts of our website. Inside the main pane, there are two columns, one for the ``side_block``, and the other for the ``body_block``.
 
 
 Quick Style Change
@@ -284,9 +284,9 @@ Update the ``login.html`` template as follows:
 
         <h2 class="form-signin-heading">Please sign in</h2>
         <input class="form-control" placeholder="Username" id="id_username" maxlength="254" name="username" type="text" required autofocus=""/>
-        <input type="password" class="form-control" placeholder="Password" id="id_password" name="password" type="password" required />
+        <input type="password" class="form-control" placeholder="Password" id="id_password" name="password"  required />
 
-  		<button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />Sign in</button>
+  		<button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" >Sign in</button>
 		</form>
 
 	{% endblock %}

@@ -122,7 +122,7 @@ To make clean urls we are going to include a slug field in the ``Category`` mode
 
 .. warning:: While you can use spaces in URLs, it is considered to be unsafe to use them. Check out `IETF Memo on URLs <http://www.ietf.org/rfc/rfc1738.txt>`_ to read more.
 
-Then we need to override the ``save`` method of the ``Category`` model, which we will call the ``slugify`` method and update the ``slug`` field with it. Note that everytime the category name changes, the slug will also change. Update your model, as shown below, and add in the import.
+Then we need to override the ``save`` method of the ``Category`` model, which we will call the ``slugify`` method and update the ``slug`` field with it. Note that every time the category name changes, the slug will also change, causing broken links. You can prevent this, by defining the slug only when creating the object. Update your model, as shown below, and add in the import.
 
 .. code-block:: python
 	
@@ -132,9 +132,12 @@ Then we need to override the ``save`` method of the ``Category`` model, which we
 		name = models.CharField(max_length=128, unique=True)
 		views = models.IntegerField(default=0)
 		likes = models.IntegerField(default=0)
-		slug = models.SlugField(unique=True)
+		slug = models.SlugField()
 		
 		def save(self, *args, **kwargs):
+			# Uncomment if you don't want the slug to change every time the name changes
+			#if self.id is None:
+				#self.slug = slugify(self.name)				
 			self.slug = slugify(self.name)
 			super(Category, self).save(*args, **kwargs)
 
@@ -242,8 +245,8 @@ Now let's create our template for the new view.  In ``<workspace>/tango_with_dja
 	    </head>
 	
 	    <body>
-	        <h1>{{ category_name }}</h1>
 	        {% if category %}
+	        <h1>{{ category_name }}</h1>
 	            {% if pages %}
 	            <ul>
 	                {% for page in pages %}

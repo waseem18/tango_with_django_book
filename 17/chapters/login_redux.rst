@@ -61,7 +61,7 @@ These settings should be self explanatory. Now, in ``tango_with_django_project/u
   			
     	url(r'^admin/', include(admin.site.urls)),
     	url(r'^rango/', include('rango.urls')),
-    	(r'^accounts/', include('registration.backends.simple.urls')),
+    	url(r'^accounts/', include('registration.backends.simple.urls')),
 	)
 
 
@@ -236,7 +236,7 @@ At the moment, when users register, it takes them to the registration complete p
 	    url(r'^rango/', include('rango.urls')),
 		#Add in this url pattern to override the default pattern in accounts.
 	    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
-	    (r'^accounts/', include('registration.backends.simple.urls')),
+	    url(r'^accounts/', include('registration.backends.simple.urls')),
 	)
 
 
