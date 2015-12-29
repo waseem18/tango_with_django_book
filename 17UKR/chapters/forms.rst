@@ -244,23 +244,23 @@
 
 На простому прикладі показано як перевіряти передані дані перед їх збереженням. Це досить зручно, особливо коли поля повинні мати значення за замовчуванням, або пропущені дані і потрібно обробити такий випадок.
 
-.. note:: Overriding methods implemented as part of the Django framework can provide you with an elegant way to add that extra bit of functionality for your application. There are many methods which you can safely override for your benefit, just like the ``clean()`` method in ``ModelForm`` as shown above. Check out `the Official Django Documentation on Models <https://docs.djangoproject.com/en/1.7/topics/db/models/#overriding-predefined-model-methods>`_ for more examples on how you can override default functionality to slot your own in.
+.. note:: Заміщення методів  розроблених як частина фреймфорку Django надає елегантний засіб для розширення функціональності вашого додатку. Є багато методів що можуть бути безпечно заміщені, так як ми це зробили з методом ``clean()`` з  ``ModelForm``. Переглянте `документацію Django про моделі <https://docs.djangoproject.com/en/1.7/topics/db/models/#overriding-predefined-model-methods>`_ де наведено більше прикладів.
 
-Exercises
----------
-Now that you've worked through the chapter, try these exercises to solidify your knowledge on Django's form functionality.
+Вправи
+------
+Тепер спробуйте виконати вправи для кращого засвоєння матеріалу цього розділу.
 
-- What happens when you don't enter in a category name on the add category form?
-- What happens when you try to add a category that already exists?
-- What happens when you visit a category that does not exist?
-- How could you gracefully handle when a user visits a category that does not exist?
-- Undertake the `part four of the official Django Tutorial <https://docs.djangoproject.com/en/dev/intro/tutorial04/>`_ if you have not done so already to reinforce what you have learnt here.
+- Що станеться якщо не внести ім'я категорії у формі для додавання категорій?
+- Що станеться якщо ви спробуєте додати категорію що вже є?
+- Що станеться якщо ви спробуєте переглянути сторінку не існуючої категорії?
+- Як красиво обробити випадок при спробі користувача подивитись неіснуючу категорію?
+- Прочитайте `четверту частину посібника Django  <https://docs.djangoproject.com/en/dev/intro/tutorial04/>`_ щоб краще засвоїти вивчене в цьому розділі.
 
 .. _forms-add-pages-view-label:
 
-Creating an *Add Pages* View, Template and URL Mapping
-.......................................................
-A next logical step would be to allow users to add pages to a given category. To do this, repeat the same workflow above for Pages - create a new view (``add_page()``), a new template (``rango/add_page.html``), URL mapping and then add a link from the category page. To get you started, here's the view logic for you.
+Створення виду, шблону, та URL-відображати для *Додати сторінку*
+................................................................
+Наступним, логічним кроком має бути надання користувачам можливості додавати сторінки до обраної категорії. Щоб зробити це, зробіть як було показано раніше, тільки для сторінок - створіть новий вид (``add_page()``), новий шаблон (``rango/add_page.html``), URL-відображення, а потім додайте посилання зі сторінки категорії. Щоб спростити вашу задачу, далі наведено функцію виду.
 
 .. code-block:: python
 
@@ -293,13 +293,11 @@ A next logical step would be to allow users to add pages to a given category. To
         return render(request, 'rango/add_page.html', context_dict)
 
 
+Підказки
+........
+Можливо ці підказки допоможуть вам виконати завдання.
 
-
-Hints
-.....
-To help you with the exercises above, the following hints may be of some use to you.
-
-* Update the ``category()`` view to pass ``category_name_slug`` by inserting it to the view's ``context_dict`` dictionary.
-* Update the ``category.html`` with a link to ``/rango/category/<category_name_url>/add_page/``.
-* Ensure that the link only appears when *the requested category exists* - with or without pages. i.e. in the template check with ``{% if category %} .... {% else %} A category by this name does not exist {% endif %}``.
-* Update ``rango/urls.py`` with a URL mapping to handle the above link.
+* Оновіть вид  ``category()`` так, щоб передавати ``category_name_slug`` (додайте його до словника контексту ``context_dict``.
+* Оновіть ``category.html`` з посиланням до ``/rango/category/<category_name_url>/add_page/``.
+* Переконайтесь, що посилання з'являється лише коли *є потрібна категорія* - зі або без сторінок. Тобто в шаблоні потрібно виконати перевірку за допомогою ``{% if category %} .... {% else %} Нема категорії з таким найменуванням {% endif %}``.
+* Оновіть ``rango/urls.py`` щоб створити URL-відображення для потрібних посилань.
