@@ -118,7 +118,7 @@ Category Page Workflow
 With our URLs design chosen, let's get started. We'll undertake the following steps.
 
 #. Import the Page model into ``rango/views.py``.
-#. Create a new view in ``rango/views.py`` - called ``category`` - The ``category`` view will take an additional parameter, ``category_name_url`` which will stored the encoded category name. 
+#. Create a new view in ``rango/views.py`` - called ``category`` - The ``category`` view will take an additional parameter, ``category_name_url`` which will store the encoded category name. 
 	* We will need some help functions to encode and decode the ``category_name_url``.
 #. Create a new template, ``templates/rango/category.html``.
 #. Update Rango's ``urlpatterns`` to map the new ``category`` view to a URL pattern in ``rango/urls.py``.
